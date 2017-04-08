@@ -1,3 +1,5 @@
+package ru.anatoli.sandbox;
+
 /**
  * Created by anatoli.anukevich on 4/6/2017.
  */
