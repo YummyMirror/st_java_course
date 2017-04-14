@@ -14,19 +14,34 @@ public class ContactCreationTests {
     
     @BeforeMethod
     public void setUp() throws Exception {
+        UserData userData = new UserData("admin", "secret");
+
         System.setProperty("webdriver.gecko.driver", "E:\\Private\\Programs\\geckodriver\\geckodriver.exe");
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        getUrl("http://localhost/addressbook/index.php");
+        login(userData);
     }
-    
+
+    private void login(UserData userData) {
+        wd.findElement(By.name("user")).click();
+        wd.findElement(By.name("user")).clear();
+        wd.findElement(By.name("user")).sendKeys(userData.getUserName());
+        wd.findElement(By.name("pass")).click();
+        wd.findElement(By.name("pass")).clear();
+        wd.findElement(By.name("pass")).sendKeys(userData.getPassword());
+        wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+    }
+
+    private void getUrl(String url) {
+        wd.get(url);
+    }
+
     @Test
     public void ContactCreationAndDeletionTests() {
-        UserData userData = new UserData("admin", "secret");
         ContactData contactData = new ContactData("test First name", "test Middle name", "test Last name",
                                                     "test Nickname", "test Title", "test Company", "test Address");
 
-        getUrl("http://localhost/addressbook/index.php");
-        login(userData);
         goToAddNewPage();
         inputContactData(contactData);
         submitContactForm();
@@ -67,20 +82,6 @@ public class ContactCreationTests {
 
     private void goToAddNewPage() {
         wd.findElement(By.linkText("add new")).click();
-    }
-
-    private void login(UserData userData) {
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(userData.getUserName());
-        wd.findElement(By.name("pass")).click();
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(userData.getPassword());
-        wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-    }
-
-    private void getUrl(String url) {
-        wd.get(url);
     }
 
     @AfterMethod
