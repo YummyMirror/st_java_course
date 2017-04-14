@@ -38,7 +38,7 @@ public class ContactCreationTests {
     }
 
     @Test
-    public void ContactCreationAndDeletionTests() {
+    public void testContactCreation() {
         ContactData contactData = new ContactData("test First name", "test Middle name", "test Last name",
                                                     "test Nickname", "test Title", "test Company", "test Address");
 
