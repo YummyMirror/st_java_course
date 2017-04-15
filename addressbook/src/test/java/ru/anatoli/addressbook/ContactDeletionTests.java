@@ -38,6 +38,7 @@ public class ContactDeletionTests {
     }
 
     @Test
+    public void testContactDeletion() {
         ContactData contactData = new ContactData("1", "2", "3", "4", "5", "6", "7");
 
         goToNewContactPage();
