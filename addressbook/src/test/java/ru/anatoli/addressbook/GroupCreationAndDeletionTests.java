@@ -9,8 +9,6 @@ public class GroupCreationAndDeletionTests extends TestBase {
         User user = new User("admin", "secret");
         GroupData groupData = new GroupData("Test Group name", "Test Group header", "Test Group footer");
 
-        getUrl("http://localhost/addressbook/group.php");
-        login(user);
         goToGroupPage();
         initGroupCreation();
         inputGroupData(groupData);

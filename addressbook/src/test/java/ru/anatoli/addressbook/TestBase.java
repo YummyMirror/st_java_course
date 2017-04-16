@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
  * Created by anatoli.anukevich on 4/16/2017.
  */
 public class TestBase {
-
     FirefoxDriver wd;
 
     public static boolean isAlertPresent(FirefoxDriver wd) {
@@ -26,9 +25,13 @@ public class TestBase {
 
     @BeforeMethod
     public void setUp() throws Exception {
+        User user = new User("admin", "secret");
+
         System.setProperty("webdriver.gecko.driver", "E:\\Private\\Programs\\geckodriver\\geckodriver.exe");
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        getUrl("http://localhost/addressbook/group.php");
+        login(user);
     }
 
     protected void goToHomePage() {
@@ -89,6 +92,7 @@ public class TestBase {
 
     @AfterMethod
     public void tearDown() {
+        logout();
         wd.quit();
     }
 
@@ -98,5 +102,9 @@ public class TestBase {
 
     private void selectAnyGroup() {
         wd.findElement(By.name("selected[]")).click();
+    }
+
+    private void logout() {
+        wd.findElement(By.linkText("Logout")).click();
     }
 }
