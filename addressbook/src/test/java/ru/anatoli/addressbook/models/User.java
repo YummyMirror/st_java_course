@@ -1,4 +1,4 @@
-package ru.anatoli.addressbook;
+package ru.anatoli.addressbook.models;
 
 public class User {
     private final String userName;

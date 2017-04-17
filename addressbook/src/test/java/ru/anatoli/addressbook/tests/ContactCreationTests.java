@@ -1,4 +1,4 @@
-package ru.anatoli.addressbook;
+package ru.anatoli.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.*;
+import ru.anatoli.addressbook.models.ContactData;
+import ru.anatoli.addressbook.models.UserData;
 
 public class ContactCreationTests {
     FirefoxDriver wd;

@@ -1,4 +1,4 @@
-package ru.anatoli.addressbook;
+package ru.anatoli.addressbook.models;
 
 public class ContactData {
     private final String firstName;
