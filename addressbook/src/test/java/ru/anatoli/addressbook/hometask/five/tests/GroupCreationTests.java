@@ -7,7 +7,7 @@ import ru.anatoli.addressbook.hometask.five.models.GroupData;
 public class GroupCreationTests extends TestBase {
 
     @Test
-    public void GroupCreationTests() {
+    public void testGroupCreation() {
         GroupData groupData = new GroupData("qqq", "www", "eee");
 
         applicationManager.getNavigationManager().goToGroupPage();
