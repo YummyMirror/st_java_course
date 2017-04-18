@@ -19,7 +19,7 @@ public class ContactCreationTests {
         System.setProperty("webdriver.gecko.driver", "E:\\Private\\Programs\\geckodriver\\geckodriver.exe");
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        getUrl("http://localhost/addressbook/edit.php");
+        getUrl("http://localhost/addressbook/index.php");
         login(userData);
     }
 
