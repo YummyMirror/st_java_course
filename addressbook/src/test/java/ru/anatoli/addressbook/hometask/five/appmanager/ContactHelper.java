@@ -18,13 +18,27 @@ public class ContactHelper extends HelperBase {
     }
 
     public void inputContactData(ContactData contactData) {
-        input(By.name("firstname"), contactData.getFirstname());
-        input(By.name("middlename"), contactData.getMiddlename());
-        input(By.name("lastname"), contactData.getLastname());
-        input(By.name("nickname"), contactData.getNickname());
-        input(By.name("title"), contactData.getTitle());
-        input(By.name("company"), contactData.getCompany());
-        input(By.name("address"), contactData.getAddress());
+        click(By.name("firstname"));
+        wd.findElement(By.name("firstname")).clear();
+        wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
+        click(By.name("middlename"));
+        wd.findElement(By.name("middlename")).clear();
+        wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddlename());
+        click(By.name("lastname"));
+        wd.findElement(By.name("lastname")).clear();
+        wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
+        click(By.name("nickname"));
+        wd.findElement(By.name("nickname")).clear();
+        wd.findElement(By.name("nickname")).sendKeys(contactData.getNickname());
+        click(By.name("title"));
+        wd.findElement(By.name("title")).clear();
+        wd.findElement(By.name("title")).sendKeys(contactData.getTitle());
+        click(By.name("company"));
+        wd.findElement(By.name("company")).clear();
+        wd.findElement(By.name("company")).sendKeys(contactData.getCompany());
+        click(By.name("address"));
+        wd.findElement(By.name("address")).clear();
+        wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
     }
 
     public void initiateContactCreation() {

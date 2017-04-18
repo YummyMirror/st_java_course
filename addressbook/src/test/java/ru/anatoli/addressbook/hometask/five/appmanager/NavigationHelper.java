@@ -15,4 +15,8 @@ public class NavigationHelper extends HelperBase {
     public void goToHomePage() {
         click(By.linkText("home page"));
     }
+
+    public void goToGroupPage() {
+        wd.findElement(By.linkText("groups")).click();
+    }
 }

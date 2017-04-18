@@ -7,21 +7,19 @@ import ru.anatoli.addressbook.hometask.five.models.UserData;
 /**
  * Created by anatoli.anukevich on 4/18/2017.
  */
-public class SessionHelper {
-    private FirefoxDriver wd;
-
+public class SessionHelper extends HelperBase {
     //Constructor
     public SessionHelper(FirefoxDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void login(UserData userData) {
-        wd.findElement(By.name("user")).click();
+        click(By.name("user"));
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys(userData.getUserName());
-        wd.findElement(By.name("pass")).click();
+        click(By.name("pass"));
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys(userData.getPassword());
-        wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+        click(By.xpath("//form[@id='LoginForm']/input[3]"));
     }
 }

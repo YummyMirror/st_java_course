@@ -1,5 +1,6 @@
 package ru.anatoli.addressbook.hometask.five.appmanager;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.anatoli.addressbook.hometask.five.models.UserData;
@@ -11,6 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationManager {
     FirefoxDriver wd;
+    private GroupHelper groupHelper;
     private SessionHelper sessionHelper;
     private NavigationHelper navigationManager;
     private ContactHelper contactHelper;
@@ -23,6 +25,7 @@ public class ApplicationManager {
         contactHelper = new ContactHelper(wd);
         navigationManager = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
+        groupHelper = new GroupHelper(wd);
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         getUrl("http://localhost/addressbook/index.php");
         sessionHelper.login(userData);
@@ -56,5 +59,9 @@ public class ApplicationManager {
 
     public SessionHelper getSessionHelper() {
         return sessionHelper;
+    }
+
+    public GroupHelper getGroupHelper() {
+        return groupHelper;
     }
 }
