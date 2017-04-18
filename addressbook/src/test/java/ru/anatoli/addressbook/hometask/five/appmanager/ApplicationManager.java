@@ -1,8 +1,10 @@
-package ru.anatoli.addressbook.hometask.five;
+package ru.anatoli.addressbook.hometask.five.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.anatoli.addressbook.hometask.five.models.ContactData;
+import ru.anatoli.addressbook.hometask.five.models.UserData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
     FirefoxDriver wd;
 
-    protected void init() {
+    public void init() {
         UserData userData = new UserData("admin", "secret");
 
         System.setProperty("webdriver.gecko.driver", "E:\\Private\\Programs\\geckodriver\\geckodriver.exe");
@@ -22,7 +24,7 @@ public class ApplicationManager {
         login(userData);
     }
 
-    private void login(UserData userData) {
+    public void login(UserData userData) {
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
         wd.findElement(By.name("user")).sendKeys(userData.getUserName());
@@ -32,19 +34,19 @@ public class ApplicationManager {
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
     }
 
-    private void getUrl(String url) {
+    public void getUrl(String url) {
         wd.get(url);
     }
 
-    protected void returnToHomePage() {
+    public void returnToHomePage() {
         wd.findElement(By.linkText("home page")).click();
     }
 
-    protected void submitContactForm() {
+    public void submitContactForm() {
         wd.findElement(By.name("submit")).click();
     }
 
-    protected void inputContactData(ContactData contactData) {
+    public void inputContactData(ContactData contactData) {
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
         wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
@@ -68,11 +70,11 @@ public class ApplicationManager {
         wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
     }
 
-    protected void initiateContactCreation() {
+    public void initiateContactCreation() {
         wd.findElement(By.linkText("add new")).click();
     }
 
-    protected void stop() {
+    public void stop() {
         wd.quit();
     }
 

@@ -1,4 +1,4 @@
-package ru.anatoli.addressbook.hometask.five;
+package ru.anatoli.addressbook.hometask.five.models;
 
 public class UserData {
     private final String userName;

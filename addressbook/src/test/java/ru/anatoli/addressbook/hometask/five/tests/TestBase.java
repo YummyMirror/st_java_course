@@ -1,7 +1,8 @@
-package ru.anatoli.addressbook.hometask.five;
+package ru.anatoli.addressbook.hometask.five.tests;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import ru.anatoli.addressbook.hometask.five.appmanager.ApplicationManager;
 
 /**
  * Created by anatoli.anukevich on 4/18/2017.
