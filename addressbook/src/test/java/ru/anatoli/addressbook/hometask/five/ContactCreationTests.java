@@ -9,9 +9,9 @@ public class ContactCreationTests extends TestBase {
         ContactData contactData = new ContactData("first name", "middle name", "last name",
                 "nickname", "title", "company", "address");
 
-        initiateContactCreation();
-        inputContactData(contactData);
-        submitContactForm();
-        returnToHomePage();
+        applicationManager.initiateContactCreation();
+        applicationManager.inputContactData(contactData);
+        applicationManager.submitContactForm();
+        applicationManager.returnToHomePage();
     }
 }
