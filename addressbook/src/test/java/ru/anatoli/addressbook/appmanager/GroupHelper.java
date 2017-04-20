@@ -5,54 +5,45 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.anatoli.addressbook.models.GroupData;
 
 /**
- * Created by anatoli.anukevich on 4/17/2017.
+ * Created by anatoli.anukevich on 4/19/2017.
  */
-public class GroupHelper {
-    private FirefoxDriver wd;
-
+public class GroupHelper extends HelperBase {
+    //Constructor
     public GroupHelper(FirefoxDriver wd) {
-        this.wd = wd;
-    }
-
-    public void removeSelectedGroup() {
-        wd.findElement(By.xpath("//div[@id='content']/form/input[5]")).click();
-    }
-
-    public void selectGroup() {
-        if (!wd.findElement(By.xpath("//div[@id='content']/form/span[3]/input")).isSelected()) {
-            wd.findElement(By.xpath("//div[@id='content']/form/span[3]/input")).click();
-        }
+        super(wd);
     }
 
     public void returnToGroupPage() {
-        wd.findElement(By.linkText("group page")).click();
+        click(By.linkText("group page"));
     }
 
-    public void submitGroupData() {
-        wd.findElement(By.name("submit")).click();
+    public void submitGroupCreation() {
+        click(By.name("submit"));
     }
 
     public void inputGroupData(GroupData groupData) {
-        wd.findElement(By.name("group_name")).click();
-        wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
-        wd.findElement(By.name("group_header")).click();
-        wd.findElement(By.name("group_header")).clear();
-        wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-        wd.findElement(By.name("group_footer")).click();
-        wd.findElement(By.name("group_footer")).clear();
-        wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+        input(By.name("group_name"), groupData.getGroupName());
+        input(By.name("group_header"), groupData.getGroupHeader());
+        input(By.name("group_footer"), groupData.getGroupFooter());
     }
 
-    public void initGroupCreation() {
-        wd.findElement(By.name("new")).click();
+    public void initiateGroupCreation() {
+        click(By.name("new"));
+    }
+
+    public void selectFirstGroup() {
+        click(By.xpath("//*[@id='content']/form/span[1]/input"));
     }
 
     public void deleteSelectedGroup() {
-        wd.findElement(By.name("delete")).click();
+        click(By.name("delete"));
     }
 
-    public void selectAnyGroup() {
-        wd.findElement(By.name("selected[]")).click();
+    public void initiateGroupModification() {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupModification() {
+        click(By.name("update"));
     }
 }

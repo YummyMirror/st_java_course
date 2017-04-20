@@ -1,26 +1,27 @@
 package ru.anatoli.addressbook.models;
 
 public class GroupData {
-    private final String name;
-    private final String header;
-    private final String footer;
+    private final String groupName;
+    private final String groupHeader;
+    private final String groupFooter;
+
     //Constructor
-    public GroupData(String name, String header, String footer) {
-        this.name = name;
-        this.header = header;
-        this.footer = footer;
+    public GroupData(String groupName, String groupHeader, String groupFooter) {
+        this.groupName = groupName;
+        this.groupHeader = groupHeader;
+        this.groupFooter = groupFooter;
     }
 
     //Getters
-    public String getName() {
-        return name;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public String getHeader() {
-        return header;
+    public String getGroupHeader() {
+        return groupHeader;
     }
 
-    public String getFooter() {
-        return footer;
+    public String getGroupFooter() {
+        return groupFooter;
     }
 }

@@ -5,20 +5,18 @@ import org.testng.annotations.BeforeMethod;
 import ru.anatoli.addressbook.appmanager.ApplicationManager;
 
 /**
- * Created by anatoli.anukevich on 4/16/2017.
+ * Created by anatoli.anukevich on 4/19/2017.
  */
 public class TestBase {
-
-    protected final ApplicationManager app = new ApplicationManager();
+    protected final ApplicationManager applicationManager = new ApplicationManager();
 
     @BeforeMethod
     public void setUp() throws Exception {
-        app.start();
+        applicationManager.init();
     }
 
     @AfterMethod
     public void tearDown() {
-        app.stop();
+        applicationManager.stop();
     }
-
 }

@@ -1,19 +1,18 @@
-package ru.anatoli.addressbook.hometask.five.tests;
+package ru.anatoli.addressbook.tests;
 
 import org.testng.annotations.Test;
-
-import ru.anatoli.addressbook.hometask.five.models.GroupData;
+import ru.anatoli.addressbook.models.GroupData;
 
 public class GroupCreationTests extends TestBase {
 
     @Test
     public void testGroupCreation() {
-        GroupData groupData = new GroupData("qqq", "www", "eee");
+        GroupData groupData = new GroupData("group name", "group header", "group footer");
 
-        applicationManager.getNavigationManager().goToGroupPage();
+        applicationManager.getNavigationHelper().goToGroupPage();
         applicationManager.getGroupHelper().initiateGroupCreation();
         applicationManager.getGroupHelper().inputGroupData(groupData);
-        applicationManager.getGroupHelper().submitGroupForm();
+        applicationManager.getGroupHelper().submitGroupCreation();
         applicationManager.getGroupHelper().returnToGroupPage();
     }
 }

@@ -1,14 +1,16 @@
 package ru.anatoli.addressbook.tests;
 
-import org.testng.annotations.Test;;
+import org.testng.annotations.Test;
 
+/**
+ * Created by anatoli.anukevich on 4/19/2017.
+ */
 public class GroupDeletionTests extends TestBase {
-    
     @Test
     public void testGroupDeletion() {
-        app.getNavigationHelper().goToGroupPage();
-        app.getGroupHelper().selectGroup();
-        app.getGroupHelper().deleteSelectedGroup();
-        app.getNavigationHelper().goToGroupPage();
+        applicationManager.getNavigationHelper().goToGroupPage();
+        applicationManager.getGroupHelper().selectFirstGroup();
+        applicationManager.getGroupHelper().deleteSelectedGroup();
+        applicationManager.getGroupHelper().returnToGroupPage();
     }
 }

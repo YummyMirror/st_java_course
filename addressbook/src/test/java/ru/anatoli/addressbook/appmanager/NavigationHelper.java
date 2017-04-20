@@ -4,16 +4,23 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
- * Created by anatoli.anukevich on 4/17/2017.
+ * Created by anatoli.anukevich on 4/19/2017.
  */
-public class NavigationHelper {
-    private FirefoxDriver wd;
-
+public class NavigationHelper extends HelperBase {
+    //Constructor
     public NavigationHelper(FirefoxDriver wd) {
-        this.wd = wd;
+        super(wd);
     }
 
     public void goToGroupPage() {
-        wd.findElement(By.linkText("groups")).click();
+        click(By.linkText("groups"));
+    }
+
+    public void initiateContactCreatin() {
+        click(By.linkText("add new"));
+    }
+
+    public void goToHomePage() {
+        click(By.xpath("//*[@id='nav']/ul/li[1]/a"));
     }
 }
