@@ -1,16 +1,16 @@
 package ru.anatoli.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
 
 /**
  * Created by anatoli.anukevich on 4/19/2017.
  */
 public class HelperBase {
-    protected FirefoxDriver wd;
+    protected WebDriver wd;
 
     //Constructor
-    public HelperBase(FirefoxDriver wd) {
+    public HelperBase(WebDriver wd) {
         this.wd = wd;
     }
 

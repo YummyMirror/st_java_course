@@ -1,6 +1,7 @@
 package ru.anatoli.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.anatoli.addressbook.models.UserData;
 
@@ -9,7 +10,7 @@ import ru.anatoli.addressbook.models.UserData;
  */
 public class SessionHelper extends HelperBase {
     //Constructor
-    public SessionHelper(FirefoxDriver wd) {
+    public SessionHelper(WebDriver wd) {
         super(wd);
     }
 
