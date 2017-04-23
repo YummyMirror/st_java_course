@@ -31,6 +31,7 @@ public class ApplicationManager {
 
         System.setProperty("webdriver.gecko.driver", "E:\\Private\\Programs\\geckodriver\\geckodriver.exe");
 
+        //Choosing browser
         if (browser.equals(BrowserType.FIREFOX)) {
             wd = new FirefoxDriver();
         }else if (browser.equals(BrowserType.CHROME)) {
@@ -42,7 +43,7 @@ public class ApplicationManager {
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
         contactHelper = new ContactHelper(wd);
-        wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         getUrl("http://localhost/addressbook/index.php");
         sessionHelper.login(userData);
     }

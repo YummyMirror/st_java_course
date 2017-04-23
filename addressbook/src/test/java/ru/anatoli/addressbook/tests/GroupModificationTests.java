@@ -9,7 +9,7 @@ import ru.anatoli.addressbook.models.GroupData;
 public class GroupModificationTests extends TestBase {
     @Test
     public void testGroupModification() {
-        GroupData groupData = new GroupData("aaa", "bbb", "ccc");
+        GroupData groupData = new GroupData("aaa", "bbb", null);
 
         applicationManager.getNavigationHelper().goToGroupPage();
         applicationManager.getGroupHelper().selectFirstGroup();

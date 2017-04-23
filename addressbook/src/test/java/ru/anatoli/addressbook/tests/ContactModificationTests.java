@@ -9,11 +9,11 @@ import ru.anatoli.addressbook.models.ContactData;
 public class ContactModificationTests extends TestBase {
     @Test
     public void testContactModification() {
-        ContactData contactData = new ContactData("aaa", "bbb", "ccc", "ddd", "eee");
+        ContactData contactData = new ContactData("aaa", "bbb", "ccc", "ddd", "eee", null);
 
         applicationManager.getNavigationHelper().goToHomePage();
         applicationManager.getContactHelper().initiateContactModification();
-        applicationManager.getContactHelper().inputContactData(contactData);
+        applicationManager.getContactHelper().inputContactData(contactData, false);
         applicationManager.getContactHelper().submitContactModification();
         applicationManager.getContactHelper().returnToHomePage();
     }

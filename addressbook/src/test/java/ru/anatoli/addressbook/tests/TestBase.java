@@ -9,7 +9,7 @@ import ru.anatoli.addressbook.appmanager.ApplicationManager;
  * Created by anatoli.anukevich on 4/19/2017.
  */
 public class TestBase {
-    protected final ApplicationManager applicationManager = new ApplicationManager(BrowserType.FIREFOX);
+    protected final ApplicationManager applicationManager = new ApplicationManager(BrowserType.CHROME);
 
     @BeforeMethod
     public void setUp() throws Exception {
