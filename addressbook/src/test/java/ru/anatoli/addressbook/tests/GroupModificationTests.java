@@ -1,5 +1,6 @@
 package ru.anatoli.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
 
@@ -14,6 +15,7 @@ public class GroupModificationTests extends TestBase {
                                              "ccc");
 
         applicationManager.getNavigationHelper().goToGroupPage();
+        int before = applicationManager.getGroupHelper().getGroupNumber();
         //If there is no one group exist
         if (! applicationManager.getGroupHelper().isGroupExist()) {
             GroupData groupData1 = new GroupData("temp group name",
@@ -25,5 +27,8 @@ public class GroupModificationTests extends TestBase {
         applicationManager.getGroupHelper().initiateGroupModification();
         applicationManager.getGroupHelper().inputGroupData(groupData);
         applicationManager.getGroupHelper().submitGroupModification();
+        applicationManager.getGroupHelper().returnToGroupPage();
+        int after = applicationManager.getGroupHelper().getGroupNumber();
+        Assert.assertEquals(after, before);
     }
 }

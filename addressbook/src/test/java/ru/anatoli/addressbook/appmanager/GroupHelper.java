@@ -58,4 +58,9 @@ public class GroupHelper extends HelperBase {
         submitGroupCreation();
         returnToGroupPage();
     }
+
+    public int getGroupNumber() {
+        int groupNumber = wd.findElements(By.name("selected[]")).size();
+        return groupNumber;
+    }
 }

@@ -1,5 +1,6 @@
 package ru.anatoli.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.ContactData;
 
@@ -17,6 +18,7 @@ public class ContactModificationTests extends TestBase {
                                                         null);
 
         applicationManager.getNavigationHelper().goToHomePage();
+        int before = applicationManager.getContactHelper().getContactNumber();
         //If there is no one contact exist
         if (! applicationManager.getContactHelper().isContactExist()) {
             ContactData contactData1 = new ContactData("temp FirstName",
@@ -31,5 +33,7 @@ public class ContactModificationTests extends TestBase {
         applicationManager.getContactHelper().inputContactData(contactData, false);
         applicationManager.getContactHelper().submitContactModification();
         applicationManager.getContactHelper().returnToHomePage();
+        int after = applicationManager.getContactHelper().getContactNumber();
+        Assert.assertEquals(after, before);
     }
 }

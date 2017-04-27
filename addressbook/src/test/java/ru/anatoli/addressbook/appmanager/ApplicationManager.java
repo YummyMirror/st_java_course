@@ -44,7 +44,7 @@ public class ApplicationManager {
         sessionHelper = new SessionHelper(wd);
         contactHelper = new ContactHelper(wd);
         wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        getUrl("http://localhost/addressbook/index.php");
+        getUrl("http://localhost/addressbook");
         sessionHelper.login(userData);
     }
 
