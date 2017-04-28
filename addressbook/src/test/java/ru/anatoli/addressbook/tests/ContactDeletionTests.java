@@ -23,7 +23,7 @@ public class ContactDeletionTests extends TestBase {
         if (! applicationManager.getContactHelper().isContactExist()) {
             applicationManager.getContactHelper().createContact(contactData);
         }
-        applicationManager.getContactHelper().selectFirstContact();
+        applicationManager.getContactHelper().selectContact(0);
         applicationManager.getContactHelper().deleteSelectedContact();
         applicationManager.getContactHelper().confirmDeleteContact();
         applicationManager.getNavigationHelper().goToHomePage();

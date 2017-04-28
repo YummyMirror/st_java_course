@@ -32,8 +32,8 @@ public class GroupHelper extends HelperBase {
         click(By.name("new"));
     }
 
-    public void selectFirstGroup() {
-        click(By.xpath("//*[@id='content']/form/span[1]/input"));
+    public void selectGroup(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void deleteSelectedGroup() {

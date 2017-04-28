@@ -23,7 +23,7 @@ public class GroupModificationTests extends TestBase {
                                                 "temp group footer");
             applicationManager.getGroupHelper().createGroup(groupData1);
         }
-        applicationManager.getGroupHelper().selectFirstGroup();
+        applicationManager.getGroupHelper().selectGroup(0);
         applicationManager.getGroupHelper().initiateGroupModification();
         applicationManager.getGroupHelper().inputGroupData(groupData);
         applicationManager.getGroupHelper().submitGroupModification();
