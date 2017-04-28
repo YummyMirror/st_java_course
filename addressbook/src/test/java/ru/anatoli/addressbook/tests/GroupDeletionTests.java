@@ -3,6 +3,7 @@ package ru.anatoli.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
+import java.util.List;
 
 /**
  * Created by anatoli.anukevich on 4/19/2017.
@@ -15,15 +16,15 @@ public class GroupDeletionTests extends TestBase {
                                         "temp group footer");
 
         applicationManager.getNavigationHelper().goToGroupPage();
-        int before = applicationManager.getGroupHelper().getGroupNumber();
         //If there is no one group exist
         if (! applicationManager.getGroupHelper().isGroupExist()) {
             applicationManager.getGroupHelper().createGroup(groupData);
         }
+        List<GroupData> before = applicationManager.getGroupHelper().getGroupList();
         applicationManager.getGroupHelper().selectGroup(1);
         applicationManager.getGroupHelper().deleteSelectedGroup();
         applicationManager.getGroupHelper().returnToGroupPage();
-        int after = applicationManager.getGroupHelper().getGroupNumber();
-        Assert.assertEquals(after, before - 1);
+        List<GroupData> after = applicationManager.getGroupHelper().getGroupList();
+        Assert.assertEquals(after.size(), before.size() - 1);
     }
 }

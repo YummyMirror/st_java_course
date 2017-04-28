@@ -3,6 +3,7 @@ package ru.anatoli.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
+import java.util.List;
 
 /**
  * Created by anatoli.anukevich on 4/19/2017.
@@ -15,7 +16,6 @@ public class GroupModificationTests extends TestBase {
                                              "ccc");
 
         applicationManager.getNavigationHelper().goToGroupPage();
-        int before = applicationManager.getGroupHelper().getGroupNumber();
         //If there is no one group exist
         if (! applicationManager.getGroupHelper().isGroupExist()) {
             GroupData groupData1 = new GroupData("temp group name",
@@ -23,12 +23,13 @@ public class GroupModificationTests extends TestBase {
                                                 "temp group footer");
             applicationManager.getGroupHelper().createGroup(groupData1);
         }
+        List<GroupData> before = applicationManager.getGroupHelper().getGroupList();
         applicationManager.getGroupHelper().selectGroup(0);
         applicationManager.getGroupHelper().initiateGroupModification();
         applicationManager.getGroupHelper().inputGroupData(groupData);
         applicationManager.getGroupHelper().submitGroupModification();
         applicationManager.getGroupHelper().returnToGroupPage();
-        int after = applicationManager.getGroupHelper().getGroupNumber();
-        Assert.assertEquals(after, before);
+        List<GroupData> after = applicationManager.getGroupHelper().getGroupList();
+        Assert.assertEquals(after.size(), before.size());
     }
 }
