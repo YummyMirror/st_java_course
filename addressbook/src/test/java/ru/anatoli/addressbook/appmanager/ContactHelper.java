@@ -3,10 +3,14 @@ package ru.anatoli.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.anatoli.addressbook.models.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by anatoli.anukevich on 4/19/2017.
@@ -77,5 +81,21 @@ public class ContactHelper extends HelperBase {
     public int getContactNumber() {
         int contactNumber = wd.findElements(By.name("selected[]")).size();
         return contactNumber;
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> webElements = wd.findElements(By.name("entry"));
+        for (int i = 0; i < webElements.size(); i++) {
+            String firstName = webElements.get(i).getText();
+            ContactData contact = new ContactData(firstName,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            null);
+            contacts.add(contact);
+        }
+        return contacts;
     }
 }
