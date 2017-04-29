@@ -42,4 +42,29 @@ public class ContactData {
     public String getGroup() {
         return group;
     }
+
+    //ToString method
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "firstName='" + firstName + '\'' +
+                '}';
+    }
+
+    //Equals method
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ContactData that = (ContactData) o;
+
+        return firstName != null ? firstName.equals(that.firstName) : that.firstName == null;
+    }
+
+    //HashCode method
+    @Override
+    public int hashCode() {
+        return firstName != null ? firstName.hashCode() : 0;
+    }
 }

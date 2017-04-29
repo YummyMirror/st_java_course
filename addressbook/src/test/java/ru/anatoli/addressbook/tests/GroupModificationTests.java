@@ -24,7 +24,7 @@ public class GroupModificationTests extends TestBase {
             applicationManager.getGroupHelper().createGroup(groupData1);
         }
         List<GroupData> before = applicationManager.getGroupHelper().getGroupList();
-        applicationManager.getGroupHelper().selectGroup(0);
+        applicationManager.getGroupHelper().selectGroup(before.size() - 1);
         applicationManager.getGroupHelper().initiateGroupModification();
         applicationManager.getGroupHelper().inputGroupData(groupData);
         applicationManager.getGroupHelper().submitGroupModification();
