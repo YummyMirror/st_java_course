@@ -3,6 +3,8 @@ package ru.anatoli.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.ContactData;
+
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -11,13 +13,6 @@ import java.util.List;
 public class ContactModificationTests extends TestBase {
     @Test
     public void testContactModification() {
-        ContactData contactData = new ContactData("aaa",
-                                                "bbb",
-                                                    "ccc",
-                                                    "ddd",
-                                                        "eee",
-                                                        null);
-
         applicationManager.getNavigationHelper().goToHomePage();
         //If there is no one contact exist
         if (! applicationManager.getContactHelper().isContactExist()) {
@@ -30,11 +25,31 @@ public class ContactModificationTests extends TestBase {
             applicationManager.getContactHelper().createContact(contactData1);
         }
         List<ContactData> before = applicationManager.getContactHelper().getContactList();
-        applicationManager.getContactHelper().initiateContactModification();
+        applicationManager.getContactHelper().initiateContactModification(0);
+        ContactData contactData = new ContactData("aaa",
+                                                "bbb",
+                                                "ccc",
+                                                "ddd",
+                                                "eee",
+                                                 null);
+
         applicationManager.getContactHelper().inputContactData(contactData, false);
         applicationManager.getContactHelper().submitContactModification();
         applicationManager.getContactHelper().returnToHomePage();
         List<ContactData> after = applicationManager.getContactHelper().getContactList();
-        Assert.assertEquals(after.size(), before.size());
+
+        //Asserting by size of collections
+        Assert.assertEquals(before.size(), after.size());
+
+        before.remove(0);
+        before.add(contactData);
+
+        //Sorting collections by ID
+        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+        before.sort(byId);
+        after.sort(byId);
+
+        //Asserting by sorted collections
+        Assert.assertEquals(before, after);
     }
 }

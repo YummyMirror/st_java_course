@@ -3,6 +3,7 @@ package ru.anatoli.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.ContactData;
+
 import java.util.List;
 
 /**
@@ -29,9 +30,13 @@ public class ContactDeletionTests extends TestBase {
         applicationManager.getContactHelper().confirmDeleteContact();
         applicationManager.getNavigationHelper().goToHomePage();
         List<ContactData> after = applicationManager.getContactHelper().getContactList();
+
+        //Asserting by size of collections
         Assert.assertEquals(after.size(), before.size() - 1);
 
         before.remove(before.size() - 1);
+
+        //Asserting by collections
         Assert.assertEquals(before, after);
     }
 }

@@ -14,7 +14,7 @@ public class GroupCreationTests extends TestBase {
         applicationManager.getNavigationHelper().goToGroupPage();
         List<GroupData> before = applicationManager.getGroupHelper().getGroupList();
         applicationManager.getGroupHelper().initiateGroupCreation();
-        GroupData groupData = new GroupData("group name",
+        GroupData groupData = new GroupData("group name1",
                                             null,
                                             "group footer");
 
@@ -22,10 +22,18 @@ public class GroupCreationTests extends TestBase {
         applicationManager.getGroupHelper().submitGroupCreation();
         applicationManager.getGroupHelper().returnToGroupPage();
         List<GroupData> after = applicationManager.getGroupHelper().getGroupList();
+
+        //Asserting by size of collections
         Assert.assertEquals(after.size(), before.size() + 1);
-        
-        groupData.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+
         before.add(groupData);
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+
+        //Sorting collections by ID
+        Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        before.sort(byId);
+        after.sort(byId);
+
+        //Asserting by sorted collections
+        Assert.assertEquals(before, after);
     }
 }
