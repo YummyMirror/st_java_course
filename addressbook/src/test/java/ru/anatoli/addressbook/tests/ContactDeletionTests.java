@@ -10,7 +10,7 @@ import java.util.List;
  * Created by anatoli.anukevich on 4/20/2017.
  */
 public class ContactDeletionTests extends TestBase {
-    @Test
+    @Test(enabled = false)
     public void testContactDeletion() {
         ContactData contactData = new ContactData("temp FirstName",
                                                 "temp MiddleName",
