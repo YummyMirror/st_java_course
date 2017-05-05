@@ -56,13 +56,6 @@ public class GroupHelper extends HelperBase {
         return isElementPresent(By.xpath("//*[@id='content']/form/span[1]/input"));
     }
 
-    public void createGroup(GroupData groupData) {
-        initiateGroupCreation();
-        inputGroupData(groupData);
-        submitGroupCreation();
-        returnToGroupPage();
-    }
-
     public int getGroupNumber() {
         int groupNumber = wd.findElements(By.name("selected[]")).size();
         return groupNumber;
@@ -77,5 +70,26 @@ public class GroupHelper extends HelperBase {
             groups.add(group);
         }
         return groups;
+    }
+
+    public void modifyGroup(int index, GroupData groupData) {
+        selectGroup(index);
+        initiateGroupModification();
+        inputGroupData(groupData);
+        submitGroupModification();
+        returnToGroupPage();
+    }
+
+    public void deleteGroup(int index) {
+        selectGroup(index);
+        deleteSelectedGroup();
+        returnToGroupPage();
+    }
+
+    public void createGroup(GroupData groupData) {
+        initiateGroupCreation();
+        inputGroupData(groupData);
+        submitGroupCreation();
+        returnToGroupPage();
     }
 }

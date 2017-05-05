@@ -13,14 +13,9 @@ public class GroupCreationTests extends TestBase {
     public void testGroupCreation() {
         applicationManager.getNavigationHelper().goToGroupPage();
         List<GroupData> before = applicationManager.getGroupHelper().getGroupList();
-        applicationManager.getGroupHelper().initiateGroupCreation();
-        GroupData groupData = new GroupData("group name1",
-                                            null,
-                                            "group footer");
+        GroupData groupData = new GroupData("group name1", null, "group footer");
 
-        applicationManager.getGroupHelper().inputGroupData(groupData);
-        applicationManager.getGroupHelper().submitGroupCreation();
-        applicationManager.getGroupHelper().returnToGroupPage();
+        applicationManager.getGroupHelper().createGroup(groupData);
         List<GroupData> after = applicationManager.getGroupHelper().getGroupList();
 
         //Asserting by size of collections
