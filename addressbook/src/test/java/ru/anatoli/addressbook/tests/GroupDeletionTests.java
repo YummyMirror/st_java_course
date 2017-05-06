@@ -15,7 +15,7 @@ public class GroupDeletionTests extends TestBase {
         applicationManager.getNavigationHelper().goToGroupPage();
         //If there is no one group exist
         if (! applicationManager.getGroupHelper().isGroupExist()) {
-            GroupData groupData = new GroupData("temp group name", "temp group header", "temp group footer");
+            GroupData groupData = new GroupData().withGroupName("temp group name").withGroupHeader("temp group header").withGroupFooter("temp group footer");
 
             applicationManager.getGroupHelper().createGroup(groupData);
         }

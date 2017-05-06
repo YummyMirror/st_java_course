@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ public class GroupModificationTests extends TestBase {
         applicationManager.getNavigationHelper().goToGroupPage();
         //If there is no one group exist
         if (! applicationManager.getGroupHelper().isGroupExist()) {
-            GroupData groupData1 = new GroupData("temp group name", "temp group header", "temp group footer");
+            GroupData groupData1 = new GroupData().withGroupName("temp group name").withGroupHeader("temp group header").withGroupFooter("temp group footer");
             applicationManager.getGroupHelper().createGroup(groupData1);
         }
     }
@@ -27,7 +26,7 @@ public class GroupModificationTests extends TestBase {
     public void testGroupModification() {
         List<GroupData> before = applicationManager.getGroupHelper().getGroupList();
         int index = before.size() - 1;
-        GroupData groupData = new GroupData("aaa11", "bbb22", "ccc33");
+        GroupData groupData = new GroupData().withGroupName("aaa11").withGroupHeader("bbb22").withGroupFooter("ccc33");
 
         applicationManager.getGroupHelper().modifyGroup(index, groupData);
         List<GroupData> after = applicationManager.getGroupHelper().getGroupList();

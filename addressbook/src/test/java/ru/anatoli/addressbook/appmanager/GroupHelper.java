@@ -3,7 +3,6 @@ package ru.anatoli.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.anatoli.addressbook.models.GroupData;
 
 import java.util.ArrayList;
@@ -66,7 +65,7 @@ public class GroupHelper extends HelperBase {
         List<WebElement> webElements = wd.findElements(By.cssSelector("span.group"));
         for (int i = 0; i < webElements.size(); i++) {
             String  name = webElements.get(i).getText();
-            GroupData group = new GroupData(name, null, null);
+            GroupData group = new GroupData().withGroupName(name);
             groups.add(group);
         }
         return groups;

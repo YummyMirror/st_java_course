@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupCreationTests extends TestBase {
@@ -13,7 +12,7 @@ public class GroupCreationTests extends TestBase {
     public void testGroupCreation() {
         applicationManager.getNavigationHelper().goToGroupPage();
         List<GroupData> before = applicationManager.getGroupHelper().getGroupList();
-        GroupData groupData = new GroupData("group name1", null, "group footer");
+        GroupData groupData = new GroupData().withGroupName("group name1").withGroupFooter("group footer");
 
         applicationManager.getGroupHelper().createGroup(groupData);
         List<GroupData> after = applicationManager.getGroupHelper().getGroupList();

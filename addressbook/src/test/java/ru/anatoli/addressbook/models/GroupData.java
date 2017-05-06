@@ -1,25 +1,10 @@
 package ru.anatoli.addressbook.models;
 
 public class GroupData {
-    private int id;
+    private int id = Integer.MAX_VALUE;
     private String groupName;
     private String groupHeader;
     private String groupFooter;
-
-    //Constructors
-    public GroupData(int id, String groupName, String groupHeader, String groupFooter) {
-        this.id = id;
-        this.groupName = groupName;
-        this.groupHeader = groupHeader;
-        this.groupFooter = groupFooter;
-    }
-
-    public GroupData(String groupName, String groupHeader, String groupFooter) {
-        this.id = Integer.MAX_VALUE;
-        this.groupName = groupName;
-        this.groupHeader = groupHeader;
-        this.groupFooter = groupFooter;
-    }
 
     //Getters
     public int getId() {
@@ -36,6 +21,27 @@ public class GroupData {
 
     public String getGroupFooter() {
         return groupFooter;
+    }
+
+    //Setters
+    public GroupData withId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public GroupData withGroupName(String groupName) {
+        this.groupName = groupName;
+        return this;
+    }
+
+    public GroupData withGroupHeader(String groupHeader) {
+        this.groupHeader = groupHeader;
+        return this;
+    }
+
+    public GroupData withGroupFooter(String groupFooter) {
+        this.groupFooter = groupFooter;
+        return this;
     }
 
     //toString method
