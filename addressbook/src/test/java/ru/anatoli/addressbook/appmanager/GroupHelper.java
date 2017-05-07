@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import ru.anatoli.addressbook.models.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by anatoli.anukevich on 4/19/2017.
@@ -37,6 +39,10 @@ public class GroupHelper extends HelperBase {
 
     public void selectGroup(int index) {
         wd.findElements(By.name("selected[]")).get(index).click();
+    }
+
+    private void selectGroupById(int id) {
+        wd.findElement(By.cssSelector("input[value = '" + id + "']")).click();
     }
 
     public void deleteSelectedGroup() {
@@ -71,6 +77,18 @@ public class GroupHelper extends HelperBase {
         return groups;
     }
 
+    public Set<GroupData> getGroupSet() {
+        Set<GroupData> groups = new HashSet<GroupData>();
+        List<WebElement> webElements = wd.findElements(By.cssSelector("span.group"));
+        for (int i = 0; i < webElements.size(); i++) {
+            int id = Integer.parseInt(webElements.get(i).findElement(By.tagName("input")).getAttribute("value"));
+            String name = webElements.get(i).getText();
+            GroupData group = new GroupData().withId(id).withGroupName(name).withGroupHeader(null).withGroupFooter(null);
+            groups.add(group);
+        }
+        return groups;
+    }
+
     public void modifyGroup(int index, GroupData groupData) {
         selectGroup(index);
         initiateGroupModification();
@@ -79,8 +97,22 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
+    public void modifyGroup(GroupData groupData) {
+        selectGroupById(groupData.getId());
+        initiateGroupModification();
+        inputGroupData(groupData);
+        submitGroupModification();
+        returnToGroupPage();
+    }
+
     public void deleteGroup(int index) {
         selectGroup(index);
+        deleteSelectedGroup();
+        returnToGroupPage();
+    }
+
+    public void deleteGroup(GroupData deleteGroup) {
+        selectGroupById(deleteGroup.getId());
         deleteSelectedGroup();
         returnToGroupPage();
     }

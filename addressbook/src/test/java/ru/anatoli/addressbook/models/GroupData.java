@@ -44,15 +44,6 @@ public class GroupData {
         return this;
     }
 
-    //toString method
-    @Override
-    public String toString() {
-        return "GroupData{" +
-                "groupName='" + groupName + '\'' +
-                '}';
-    }
-
-    //Equals method
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,12 +51,23 @@ public class GroupData {
 
         GroupData groupData = (GroupData) o;
 
+        if (id != groupData.id) return false;
         return groupName != null ? groupName.equals(groupData.groupName) : groupData.groupName == null;
     }
 
-    //hashCode method
     @Override
     public int hashCode() {
-        return groupName != null ? groupName.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
+        return result;
     }
+
+    @Override
+
+    public String toString() {
+        return "GroupData{" +
+                "groupName='" + groupName + '\'' +
+                '}';
+    }
+
 }

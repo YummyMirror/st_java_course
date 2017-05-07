@@ -11,7 +11,7 @@ import ru.anatoli.addressbook.appmanager.ApplicationManager;
  * Created by anatoli.anukevich on 4/19/2017.
  */
 public class TestBase {
-    protected static final ApplicationManager applicationManager = new ApplicationManager(BrowserType.CHROME);
+    protected static final ApplicationManager applicationManager = new ApplicationManager(BrowserType.IE);
 
     @BeforeSuite
     public void setUp() throws Exception {
