@@ -91,64 +91,37 @@ public class ContactHelper extends HelperBase {
         initiateContactCreation();
         inputContactData(contactData, true);
         submitContactCreation();
+        contactCache = null;
         returnToHomePage();
-    }
-
-    public void removeContact(int index) {
-        selectContact(index);
-        deleteSelectedContact();
-        confirmDeleteContact();
-        goToHomePage();
     }
 
     public void removeContact(ContactData contactData) {
         selectContactById(contactData.getId());
         deleteSelectedContact();
         confirmDeleteContact();
+        contactCache = null;
         goToHomePage();
-    }
-
-    public void modifyContact(ContactData contactData, int index) {
-        initiateContactModification(index);
-        inputContactData(contactData, false);
-        submitContactModification();
-        returnToHomePage();
     }
 
     public void modifyContact(ContactData contactData) {
         initiateContactModificationById(contactData.getId());
         inputContactData(contactData, false);
         submitContactModification();
+        contactCache = null;
         returnToHomePage();
     }
 
-    public int getContactNumber() {
-        int contactNumber = wd.findElements(By.name("selected[]")).size();
-        return contactNumber;
-    }
-
-    public List<ContactData> getContactList() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> webElements = wd.findElements(By.name("entry"));
-        for (int i = 0; i < webElements.size(); i++) {
-            //String name = webElements.get(i).getText();
-            String firstName = webElements.get(i).findElement(By.xpath("//td[3]")).getText();
-            String lastName = webElements.get(i).findElement(By.xpath("//td[2]")).getText();
-            ContactData contact = new ContactData().withFirstName(firstName)
-                                                    .withMiddleName(null)
-                                                    .withLastName(lastName)
-                                                    .withNickname(null)
-                                                    .withTitle(null)
-                                                    .withGroup(null);
-            contacts.add(contact);
-        }
-        return contacts;
-    }
+    //private Set<ContactData> contactCache = null;
+    private Contacts contactCache = null; //remove after course
 
     //public Set<ContactData> getContactSet() {
     public Contacts getContactSet() { //remove after course
-        //Set<ContactData> contacts = new HashSet<ContactData>();
-        Contacts contacts = new Contacts(); //remove after course
+        if (contactCache != null) {
+            //return new HashSet<ContactData>(contactCache);
+            return new Contacts(contactCache);  //remove after course
+        }
+        //contactCache contacts = new HashSet<ContactData>();
+        contactCache = new Contacts(); //remove after course
         List<WebElement> webElements = wd.findElements(By.name("entry"));
         for (int i = 0; i < webElements.size(); i++) {
             //String name = webElements.get(i).getText();
@@ -164,8 +137,9 @@ public class ContactHelper extends HelperBase {
                                                     .withNickname(null)
                                                     .withTitle(null)
                                                     .withGroup(null);
-            contacts.add(contact);
+            contactCache.add(contact);
         }
-        return contacts;
+        //return new HashSet<ContactData>(contactCache);
+        return new Contacts(contactCache);  //remove after course
     }
 }

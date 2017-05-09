@@ -67,26 +67,26 @@ public class GroupHelper extends HelperBase {
         return groupNumber;
     }
 
+    //private Set<GroupData> groupCache = null;
+    private Groups groupCache = null; //remove after course
+
     //public Set<GroupData> getGroupSet() {
     public Groups getGroupSet() { //remove after course
-        //Set<GroupData> groups = new HashSet<GroupData>();
-        Groups groups = new Groups(); //remove after course
+        if (groupCache != null) {
+            //return new HashSet<GroupData>(groupCache);
+            return new Groups(groupCache); //remove after course
+        }
+        //groupCache groups = new HashSet<GroupData>();
+        groupCache = new Groups(); //remove after course
         List<WebElement> webElements = wd.findElements(By.cssSelector("span.group"));
         for (int i = 0; i < webElements.size(); i++) {
             int id = Integer.parseInt(webElements.get(i).findElement(By.tagName("input")).getAttribute("value"));
             String name = webElements.get(i).getText();
             GroupData group = new GroupData().withId(id).withGroupName(name).withGroupHeader(null).withGroupFooter(null);
-            groups.add(group);
+            groupCache.add(group);
         }
-        return groups;
-    }
-
-    public void modifyGroup(int index, GroupData groupData) {
-        selectGroup(index);
-        initiateGroupModification();
-        inputGroupData(groupData);
-        submitGroupModification();
-        returnToGroupPage();
+        //return new HashSet<GroupData>(groupCache);
+        return new Groups(groupCache); //remove after course
     }
 
     public void modifyGroup(GroupData groupData) {
@@ -94,18 +94,14 @@ public class GroupHelper extends HelperBase {
         initiateGroupModification();
         inputGroupData(groupData);
         submitGroupModification();
-        returnToGroupPage();
-    }
-
-    public void deleteGroup(int index) {
-        selectGroup(index);
-        deleteSelectedGroup();
+        groupCache = null;
         returnToGroupPage();
     }
 
     public void deleteGroup(GroupData deleteGroup) {
         selectGroupById(deleteGroup.getId());
         deleteSelectedGroup();
+        groupCache = null;
         returnToGroupPage();
     }
 
@@ -113,6 +109,7 @@ public class GroupHelper extends HelperBase {
         initiateGroupCreation();
         inputGroupData(groupData);
         submitGroupCreation();
+        groupCache = null;
         returnToGroupPage();
     }
 }
