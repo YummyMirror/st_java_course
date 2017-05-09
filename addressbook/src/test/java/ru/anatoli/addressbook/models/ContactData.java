@@ -1,24 +1,13 @@
 package ru.anatoli.addressbook.models;
 
 public class ContactData {
-    private int id;
+    private int id = Integer.MAX_VALUE;
     private String firstName;
     private String middleName;
     private String lastName;
     private String nickname;
     private String title;
     private String group;
-
-    //Constructor
-    public ContactData(String firstName, String middleName, String lastName, String nickname, String title, String group) {
-        this.id = Integer.MAX_VALUE;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.nickname = nickname;
-        this.title = title;
-        this.group = group;
-    }
 
     //Getters
     public int getId() {
@@ -49,16 +38,49 @@ public class ContactData {
         return group;
     }
 
-    //toString method
+    //Setters
+    public ContactData withId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public ContactData withFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public ContactData withMiddleName(String middleName) {
+        this.middleName = middleName;
+        return this;
+    }
+
+    public ContactData withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public ContactData withNickname(String nickname) {
+        this.nickname = nickname;
+        return this;
+    }
+
+    public ContactData withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "ContactData{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "id=" + id +
                 '}';
     }
 
-    //Equals method
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,15 +88,12 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
-        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-        return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+        return id == that.id;
     }
 
-    //HashCode method
     @Override
     public int hashCode() {
-        int result = firstName != null ? firstName.hashCode() : 0;
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        return result;
+        return id;
     }
+
 }

@@ -1,11 +1,17 @@
 package ru.anatoli.addressbook.tests;
 
-import org.testng.Assert;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
-import java.util.List;
+import ru.anatoli.addressbook.models.Groups;
+
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by anatoli.anukevich on 4/19/2017.
@@ -24,20 +30,24 @@ public class GroupDeletionTests extends TestBase {
 
     @Test
     public void testGroupDeletion() {
-        Set<GroupData> before = applicationManager.getGroupHelper().getGroupSet();
+        //Set<GroupData> before = applicationManager.getGroupHelper().getGroupSet();
+        Groups before = applicationManager.getGroupHelper().getGroupSet(); //remove after course
 
-        //Random element
+            //Random element
         GroupData deleteGroup = before.iterator().next();
         applicationManager.getGroupHelper().deleteGroup(deleteGroup);
 
-        Set<GroupData> after = applicationManager.getGroupHelper().getGroupSet();
+        //Set<GroupData> after = applicationManager.getGroupHelper().getGroupSet();
+        Groups after = applicationManager.getGroupHelper().getGroupSet(); //remove after course
 
-        //Asserting by size of collections
-        Assert.assertEquals(after.size(), before.size() - 1);
+            //Asserting by size of collections
+        //assertEquals(after.size(), before.size() - 1);
+        assertThat(after.size(), equalTo(before.size() - 1)); //remove after course
 
-        before.remove(deleteGroup);
+        //before.remove(deleteGroup);
 
-        //Asserting by collections
-        Assert.assertEquals(before, after);
+            //Asserting by collections
+        //assertEquals(before, after);
+        assertThat(after, equalTo(before.without(deleteGroup))); //remove after course
     }
 }

@@ -1,42 +1,47 @@
 package ru.anatoli.addressbook.tests;
 
-import org.testng.Assert;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.ContactData;
+import ru.anatoli.addressbook.models.Contacts;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.testng.Assert.assertEquals;
 
 public class ContactCreationTests extends TestBase {
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testContactCreation() {
         applicationManager.getNavigationHelper().goToHomePage();
-        List<ContactData> before = applicationManager.getContactHelper().getContactList();
-        applicationManager.getContactHelper().initiateContactCreation();
-        ContactData contactData = new ContactData("FirstName1",
-                                                    "MiddleName1",
-                                                    "LastName1",
-                                                    "nickname",
-                                                    "Title",
-                                                    "aaa");
 
-        applicationManager.getContactHelper().inputContactData(contactData, true);
-        applicationManager.getContactHelper().submitContactCreation();
-        applicationManager.getContactHelper().returnToHomePage();
-        List<ContactData> after = applicationManager.getContactHelper().getContactList();
+        //Set<ContactData> before = applicationManager.getContactHelper().getContactSet();
+        Contacts before = applicationManager.getContactHelper().getContactSet();  //remove after course
 
-        //Asserting by size of collections
-        Assert.assertEquals(after.size(), before.size() + 1);
+        ContactData contactData = new ContactData().withFirstName("FirstName111")
+                                                    .withMiddleName("MiddleName1111")
+                                                    .withLastName("LastName111")
+                                                    .withNickname("nickname")
+                                                    .withTitle("Title")
+                                                    .withGroup("aaa");
+        applicationManager.getContactHelper().createContact(contactData);
 
-        before.add(contactData);
+        //Set<ContactData> after = applicationManager.getContactHelper().getContactSet();
+        Contacts after = applicationManager.getContactHelper().getContactSet(); //remove after course
 
-        //Sorting collections by ID
-        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-        before.sort(byId);
-        after.sort(byId);
+            //Asserting by size of collections
+        //assertEquals(after.size(), before.size() + 1);
+        assertThat(after.size(), equalTo(before.size() + 1));  //remove after course
 
-        //Asserting by sorted collections
-        Assert.assertEquals(before, after);
+        //contactData.withId(after.stream().max((c1, c2) -> Integer.compare(c1.getId(), c2.getId())).get().getId());
+        //before.add(contactData);
+
+            //Asserting by sorted collections
+        //assertEquals(before, after);
+        assertThat(after, equalTo(before.withAdded(
+                        contactData.withId(after.stream().max((c1, c2) -> Integer.compare(c1.getId(), c2.getId())).get().getId()))));  //remove after course
     }
 }

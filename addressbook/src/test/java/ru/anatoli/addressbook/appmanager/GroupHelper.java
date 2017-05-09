@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.anatoli.addressbook.models.GroupData;
+import ru.anatoli.addressbook.models.Groups;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -66,19 +67,10 @@ public class GroupHelper extends HelperBase {
         return groupNumber;
     }
 
-    public List<GroupData> getGroupList() {
-        List<GroupData> groups = new ArrayList<GroupData>();
-        List<WebElement> webElements = wd.findElements(By.cssSelector("span.group"));
-        for (int i = 0; i < webElements.size(); i++) {
-            String  name = webElements.get(i).getText();
-            GroupData group = new GroupData().withGroupName(name);
-            groups.add(group);
-        }
-        return groups;
-    }
-
-    public Set<GroupData> getGroupSet() {
-        Set<GroupData> groups = new HashSet<GroupData>();
+    //public Set<GroupData> getGroupSet() {
+    public Groups getGroupSet() { //remove after course
+        //Set<GroupData> groups = new HashSet<GroupData>();
+        Groups groups = new Groups(); //remove after course
         List<WebElement> webElements = wd.findElements(By.cssSelector("span.group"));
         for (int i = 0; i < webElements.size(); i++) {
             int id = Integer.parseInt(webElements.get(i).findElement(By.tagName("input")).getAttribute("value"));

@@ -1,55 +1,64 @@
 package ru.anatoli.addressbook.tests;
 
-import org.testng.Assert;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.ContactData;
+import ru.anatoli.addressbook.models.Contacts;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.testng.Assert.*;
 
 /**
  * Created by anatoli.anukevich on 4/20/2017.
  */
 public class ContactModificationTests extends TestBase {
-    @Test(enabled = false)
-    public void testContactModification() {
+    @BeforeMethod
+    public void ensurePrecondition() {
         applicationManager.getNavigationHelper().goToHomePage();
         //If there is no one contact exist
         if (! applicationManager.getContactHelper().isContactExist()) {
-            ContactData contactData1 = new ContactData("temp FirstName",
-                                                    "temp MiddleName",
-                                                        "temp LastName",
-                                                        "temp nickname",
-                                                            "temp title",
-                                                            "aaa");
+            ContactData contactData1 = new ContactData().withFirstName("temp FirstName")
+                                                        .withMiddleName("temp MiddleName")
+                                                        .withLastName("temp LastName")
+                                                        .withNickname("temp nickname")
+                                                        .withTitle("temp title")
+                                                        .withGroup("aaa");
             applicationManager.getContactHelper().createContact(contactData1);
         }
-        List<ContactData> before = applicationManager.getContactHelper().getContactList();
-        applicationManager.getContactHelper().initiateContactModification(0);
-        ContactData contactData = new ContactData("aaa",
-                                                "bbb",
-                                                "ccc",
-                                                "ddd",
-                                                "eee",
-                                                 null);
+    }
 
-        applicationManager.getContactHelper().inputContactData(contactData, false);
-        applicationManager.getContactHelper().submitContactModification();
-        applicationManager.getContactHelper().returnToHomePage();
-        List<ContactData> after = applicationManager.getContactHelper().getContactList();
+    @Test(enabled = true)
+    public void testContactModification() {
+        //Set<ContactData> before = applicationManager.getContactHelper().getContactSet();
+        Contacts before = applicationManager.getContactHelper().getContactSet();   //remove after course
+        ContactData modifyContact = before.iterator().next();
 
-        //Asserting by size of collections
-        Assert.assertEquals(before.size(), after.size());
+        ContactData contactData = new ContactData().withId(modifyContact.getId())
+                                                    .withFirstName("aaa")
+                                                    .withMiddleName("bbb")
+                                                    .withLastName("ccc")
+                                                    .withNickname("ddd")
+                                                    .withTitle("eee")
+                                                    .withGroup(null);
+        applicationManager.getContactHelper().modifyContact(modifyContact);
 
-        before.remove(0);
-        before.add(contactData);
+        //Set<ContactData> after = applicationManager.getContactHelper().getContactSet();
+        Contacts after = applicationManager.getContactHelper().getContactSet();   //remove after course
 
-        //Sorting collections by ID
-        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-        before.sort(byId);
-        after.sort(byId);
+            //Asserting by size of collections
+        //assertEquals(before.size(), after.size());
+        assertThat(before.size(), equalTo(after.size()));   //remove after course
 
-        //Asserting by sorted collections
-        Assert.assertEquals(before, after);
+        //before.remove(modifyContact);
+        //before.add(contactData);
+
+            //Asserting by sorted collections
+        //assertEquals(before, after);
+        assertThat(after, equalTo(before.without(modifyContact).withAdded(contactData)));  //remove after course
     }
 }
