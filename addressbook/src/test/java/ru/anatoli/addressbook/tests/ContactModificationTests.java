@@ -1,17 +1,11 @@
 package ru.anatoli.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.ContactData;
 import ru.anatoli.addressbook.models.Contacts;
-
-import java.util.Set;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.*;
-import static org.testng.Assert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by anatoli.anukevich on 4/20/2017.
@@ -36,8 +30,8 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification() {
         //Set<ContactData> before = applicationManager.getContactHelper().getContactSet();
         Contacts before = applicationManager.getContactHelper().getContactSet();   //remove after course
-        ContactData modifyContact = before.iterator().next();
 
+        ContactData modifyContact = before.iterator().next();
         ContactData contactData = new ContactData().withId(modifyContact.getId())
                                                     .withFirstName("aaa")
                                                     .withMiddleName("bbb")
@@ -45,7 +39,7 @@ public class ContactModificationTests extends TestBase {
                                                     .withNickname("ddd")
                                                     .withTitle("eee")
                                                     .withGroup(null);
-        applicationManager.getContactHelper().modifyContact(modifyContact);
+        applicationManager.getContactHelper().modifyContact(contactData);
 
         //Set<ContactData> after = applicationManager.getContactHelper().getContactSet();
         Contacts after = applicationManager.getContactHelper().getContactSet();   //remove after course

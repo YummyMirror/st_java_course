@@ -72,7 +72,8 @@ public class ContactHelper extends HelperBase {
     }
 
     private void initiateContactModificationById(int id) {
-        wd.findElement(By.xpath("//a[@href='edit.php?id = " + id + "']")).click();
+        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
+        //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
     }
 
     public void submitContactModification() {
@@ -122,14 +123,13 @@ public class ContactHelper extends HelperBase {
         }
         //contactCache contacts = new HashSet<ContactData>();
         contactCache = new Contacts(); //remove after course
-        List<WebElement> webElements = wd.findElements(By.name("entry"));
-        for (int i = 0; i < webElements.size(); i++) {
-            //String name = webElements.get(i).getText();
-            int id = Integer.parseInt(webElements.get(i).findElement(By.tagName("input")).getAttribute("id"));
-            //String firstName = webElements.get(i).findElement(By.xpath("//td[3]")).getText();
-            String firstName = webElements.get(i).findElement(By.cssSelector("td:nth-child(3)")).getText();
-            //String lastName = webElements.get(i).findElement(By.xpath("//td[2]")).getText();
-            String lastName = webElements.get(i).findElement(By.cssSelector("td:nth-child(2)")).getText();
+        List<WebElement> rows = wd.findElements(By.name("entry"));
+        for (int i = 0; i < rows.size(); i++) {
+            List<WebElement> cells = rows.get(i).findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("id"));
+            String firstName = cells.get(2).getText();
+            String lastName = cells.get(1).getText();
+
             ContactData contact = new ContactData().withId(id)
                                                     .withFirstName(firstName)
                                                     .withMiddleName(null)

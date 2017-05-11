@@ -82,7 +82,10 @@ public class GroupHelper extends HelperBase {
         for (int i = 0; i < webElements.size(); i++) {
             int id = Integer.parseInt(webElements.get(i).findElement(By.tagName("input")).getAttribute("value"));
             String name = webElements.get(i).getText();
-            GroupData group = new GroupData().withId(id).withGroupName(name).withGroupHeader(null).withGroupFooter(null);
+            GroupData group = new GroupData().withId(id)
+                                            .withGroupName(name)
+                                            .withGroupHeader(null)
+                                            .withGroupFooter(null);
             groupCache.add(group);
         }
         //return new HashSet<GroupData>(groupCache);

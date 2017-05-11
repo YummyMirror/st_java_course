@@ -1,17 +1,20 @@
 package ru.anatoli.addressbook.tests;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
 import ru.anatoli.addressbook.models.Groups;
-
-import java.util.Set;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
+    @BeforeMethod
+    public void ensurePrecondition() {
+        applicationManager.getNavigationHelper().goToGroupPage();
+    }
+
     @Test
     public void testGroupCreation() {
-        applicationManager.getNavigationHelper().goToGroupPage();
         //Set<GroupData> before = applicationManager.getGroupHelper().getGroupSet();
         Groups before = applicationManager.getGroupHelper().getGroupSet();  //remove after course
 
