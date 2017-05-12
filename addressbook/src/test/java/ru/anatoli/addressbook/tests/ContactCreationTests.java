@@ -24,9 +24,13 @@ public class ContactCreationTests extends TestBase {
                                                     .withLastName("LastName111")
                                                     .withNickname("nickname")
                                                     .withTitle("Title")
+                                                    .withAddress("111\n222\n333")
                                                     .withHomePhone("123")
                                                     .withMobilePhone("456")
                                                     .withWorkPhone("789")
+                                                    .withEmail("1@mail.ru")
+                                                    .withEmail2("2@mail.ru")
+                                                    .withEmail3("3@mail.ru")
                                                     .withGroup("aaa");
         applicationManager.getContactHelper().createContact(contactData);
 
