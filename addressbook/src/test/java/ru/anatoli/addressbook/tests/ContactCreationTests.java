@@ -4,6 +4,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.ContactData;
 import ru.anatoli.addressbook.models.Contacts;
+
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
@@ -19,10 +22,12 @@ public class ContactCreationTests extends TestBase {
         //Set<ContactData> before = applicationManager.getContactHelper().getContactSet();
         Contacts before = applicationManager.getContactHelper().getContactSet();  //remove after course
 
+        File photo = new File("src/test/resources/", "image.png");
         ContactData contactData = new ContactData().withFirstName("FirstName111")
                                                     .withMiddleName("MiddleName1111")
                                                     .withLastName("LastName111")
                                                     .withNickname("nickname")
+                                                    .withPhoto(photo)
                                                     .withTitle("Title")
                                                     .withAddress("111\n222\n333")
                                                     .withHomePhone("123")
