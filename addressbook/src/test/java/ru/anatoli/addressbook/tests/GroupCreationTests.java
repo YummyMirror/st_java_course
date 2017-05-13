@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
 import ru.anatoli.addressbook.models.Groups;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,11 +16,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
     @DataProvider
-    public Iterator<Object[]> validGroupData() {
+    public Iterator<Object[]> validGroupData() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
-        list.add(new Object[] {new GroupData().withGroupName("name1").withGroupHeader("header1").withGroupFooter("footer1")});
-        list.add(new Object[] {new GroupData().withGroupName("name2").withGroupHeader(null).withGroupFooter("footer2")});
-        list.add(new Object[] {new GroupData().withGroupName("name3").withGroupHeader("header3").withGroupFooter(null)});
+        File file = new File("src/test/resources/groupfile.csv");
+        FileReader reader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        String line = bufferedReader.readLine();
+        while (line != null) {
+            //line.replaceAll("\\s", "");
+            String splitData[] = line.split(";");
+            list.add(new Object[] {new GroupData().withGroupName(splitData[0]).withGroupHeader(splitData[1]).withGroupFooter(splitData[2])});
+            line = bufferedReader.readLine();
+        }
         return list.iterator();
     }
 
