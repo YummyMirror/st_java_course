@@ -23,13 +23,10 @@ public class GroupDataGenerator {
 
     private static void save(List<GroupData> listWithGroups, File file) throws IOException {
         FileWriter writer = new FileWriter(file);
-        int counter = 1;
         for (int i = 0; i < listWithGroups.size(); i++) {
-            writer.write(String.format("%d. %s; %s; %s \n",
-                                                            counter,
+            writer.write(String.format("%s; %s; %s \n",
                                                             listWithGroups.get(i).getGroupName(),
                                                             listWithGroups.get(i).getGroupHeader(), listWithGroups.get(i).getGroupFooter()));
-            counter++;
         }
         writer.flush();
         writer.close();

@@ -1,26 +1,38 @@
 package ru.anatoli.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
 import ru.anatoli.addressbook.models.Groups;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
+    @DataProvider
+    public Iterator<Object[]> validGroupData() {
+        List<Object[]> list = new ArrayList<Object[]>();
+        list.add(new Object[] {new GroupData().withGroupName("name1").withGroupHeader("header1").withGroupFooter("footer1")});
+        list.add(new Object[] {new GroupData().withGroupName("name2").withGroupHeader(null).withGroupFooter("footer2")});
+        list.add(new Object[] {new GroupData().withGroupName("name3").withGroupHeader("header3").withGroupFooter(null)});
+        return list.iterator();
+    }
+
     @BeforeMethod
     public void ensurePrecondition() {
         applicationManager.getNavigationHelper().goToGroupPage();
     }
 
-    @Test
-    public void testGroupCreation() {
+    @Test(dataProvider = "validGroupData")
+    public void testGroupCreation(GroupData groupData) {
         //Set<GroupData> before = applicationManager.getGroupHelper().getGroupSet();
         Groups before = applicationManager.getGroupHelper().getGroupSet();  //remove after course
 
-        GroupData groupData = new GroupData().withGroupName("group name1")
-                                            .withGroupHeader(null)
-                                            .withGroupFooter("group footer");
         applicationManager.getGroupHelper().createGroup(groupData);
 
         //Set<GroupData> after = applicationManager.getGroupHelper().getGroupSet();
