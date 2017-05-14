@@ -1,5 +1,7 @@
 package ru.anatoli.addressbook.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -7,6 +9,7 @@ import ru.anatoli.addressbook.models.GroupData;
 import ru.anatoli.addressbook.models.Groups;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,7 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
     @DataProvider
-    public Iterator<Object[]> validGroupData() throws IOException {
+    public Iterator<Object[]> validGroupDataFromCsv() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
         File file = new File("src/test/resources/groupfile.csv");
         FileReader reader = new FileReader(file);
@@ -31,12 +34,29 @@ public class GroupCreationTests extends TestBase {
         return list.iterator();
     }
 
+    @DataProvider
+    public Iterator<Object[]> validGroupDataFromJson() throws IOException {
+        File file = new File("src/test/resources/groupfile.json");
+        FileReader reader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        String line = bufferedReader.readLine();
+        String json = "";
+        while (line != null) {
+            json += line;
+            line = bufferedReader.readLine();
+        }
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<GroupData>>(){}.getType(); //List<GroupData>.class
+        List<GroupData> groups = gson.fromJson(json, collectionType);
+        return groups.stream().map((g) -> new Object[] {g}).iterator();
+    }
+
     @BeforeMethod
     public void ensurePrecondition() {
         applicationManager.getNavigationHelper().goToGroupPage();
     }
 
-    @Test(dataProvider = "validGroupData")
+    @Test(dataProvider = "validGroupDataFromJson")
     public void testGroupCreation(GroupData groupData) {
         //Set<GroupData> before = applicationManager.getGroupHelper().getGroupSet();
         Groups before = applicationManager.getGroupHelper().getGroupSet();  //remove after course

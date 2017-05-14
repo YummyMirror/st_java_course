@@ -1,5 +1,7 @@
 package ru.anatoli.addressbook.generators;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import ru.anatoli.addressbook.models.GroupData;
 import java.io.File;
 import java.io.FileWriter;
@@ -15,13 +17,29 @@ public class GroupDataGenerator {
         int number = Integer.parseInt(args[0]);
         String pathToFile = args[1];
         String fileName = args[2];
+        String format = args[3];
         File file = new File(pathToFile, fileName);
 
         List<GroupData> listWithGroups = generateGroups(number);
-        save(listWithGroups, file);
+        if (format.equals("csv")) {
+            saveAsCsv(listWithGroups, file);
+        }else if (format.equals("json")) {
+            saveAsJson(listWithGroups, file);
+        }else {
+            System.out.println("Input wrong format " + format);
+        }
     }
 
-    private static void save(List<GroupData> listWithGroups, File file) throws IOException {
+    private static void saveAsJson(List<GroupData> listWithGroups, File file) throws IOException {
+        FileWriter writer = new FileWriter(file);
+        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+        String json = gson.toJson(listWithGroups);
+        writer.write(json);
+        writer.flush();
+        writer.close();
+    }
+
+    private static void saveAsCsv(List<GroupData> listWithGroups, File file) throws IOException {
         FileWriter writer = new FileWriter(file);
         for (int i = 0; i < listWithGroups.size(); i++) {
             writer.write(String.format("%s; %s; %s \n",
