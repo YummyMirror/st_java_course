@@ -11,6 +11,7 @@ public class ContactData {
     private String middleName;
     @Expose
     private String lastName;
+    @Expose
     private String nickname;
     @Expose
     private File photo;
@@ -30,6 +31,7 @@ public class ContactData {
     private String email2;
     @Expose
     private String email3;
+    @Expose
     private String group;
 
     //Getters

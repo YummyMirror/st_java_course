@@ -1,42 +1,81 @@
 package ru.anatoli.addressbook.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.ContactData;
 import ru.anatoli.addressbook.models.Contacts;
-
+import java.io.BufferedReader;
 import java.io.File;
-
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class ContactCreationTests extends TestBase {
+    @DataProvider
+    public Iterator<Object[]> validContactDataFromCsv() throws IOException {
+        List<Object[]> list = new ArrayList<Object[]>();
+        File file = new File("src/test/resources/", "contactFile.csv");
+        FileReader reader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        String line = bufferedReader.readLine();
+        while (line != null) {
+            String splitData[] = line.split(";");
+            list.add(new Object[] {new ContactData().withFirstName(splitData[0])
+                                        .withMiddleName(splitData[1])
+                                        .withLastName(splitData[2])
+                                        .withNickname(splitData[3])
+                                        //.withPhoto(new File(splitData[4]))
+                                        .withTitle(splitData[4])
+                                        .withAddress(splitData[5])
+                                        .withHomePhone(splitData[6])
+                                        .withMobilePhone(splitData[7])
+                                        .withWorkPhone(splitData[8])
+                                        .withEmail(splitData[9])
+                                        .withEmail2(splitData[10])
+                                        .withEmail3(splitData[11])
+                                        .withGroup("aaa")});
+            line = bufferedReader.readLine();
+        }
+        bufferedReader.close();
+        reader.close();
+        return list.iterator();
+    }
+
+    @DataProvider
+    public Iterator<Object[]> validContactDataFromJson() throws IOException {
+        File file = new File("src/test/resources/", "contactFile.json");
+        FileReader reader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(reader);
+        String line = bufferedReader.readLine();
+        String json = "";
+        while (line != null) {
+            json += line;
+            line = bufferedReader.readLine();
+        }
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<ContactData>>(){}.getType();
+        List<ContactData> contacts =  gson.fromJson(json, collectionType);
+        return contacts.stream().map((c) -> new Object[] {c}).iterator();
+    }
+
     @BeforeMethod
     public void ensurePrecondition() {
         applicationManager.getNavigationHelper().goToHomePage();
     }
 
-    @Test(enabled = true)
-    public void testContactCreation() {
+    @Test(dataProvider = "validContactDataFromJson")
+    public void testContactCreation(ContactData contactData) {
         //Set<ContactData> before = applicationManager.getContactHelper().getContactSet();
         Contacts before = applicationManager.getContactHelper().getContactSet();  //remove after course
 
-        File photo = new File("src/test/resources/", "image.png");
-        ContactData contactData = new ContactData().withFirstName("FirstName111")
-                                                    .withMiddleName("MiddleName1111")
-                                                    .withLastName("LastName111")
-                                                    .withNickname("nickname")
-                                                    .withPhoto(photo)
-                                                    .withTitle("Title")
-                                                    .withAddress("111\n222\n333")
-                                                    .withHomePhone("123")
-                                                    .withMobilePhone("456")
-                                                    .withWorkPhone("789")
-                                                    .withEmail("1@mail.ru")
-                                                    .withEmail2("2@mail.ru")
-                                                    .withEmail3("3@mail.ru")
-                                                    .withGroup("aaa");
         applicationManager.getContactHelper().createContact(contactData);
 
         //Set<ContactData> after = applicationManager.getContactHelper().getContactSet();

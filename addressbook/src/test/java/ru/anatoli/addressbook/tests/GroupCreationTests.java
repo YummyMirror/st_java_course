@@ -7,13 +7,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
 import ru.anatoli.addressbook.models.Groups;
-
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -31,6 +29,8 @@ public class GroupCreationTests extends TestBase {
             list.add(new Object[] {new GroupData().withGroupName(splitData[0]).withGroupHeader(splitData[1]).withGroupFooter(splitData[2])});
             line = bufferedReader.readLine();
         }
+        bufferedReader.close();
+        reader.close();
         return list.iterator();
     }
 

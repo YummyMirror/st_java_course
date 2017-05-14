@@ -43,11 +43,12 @@ public class ContactDataGenerator {
     private static void saveAsCsv(List<ContactData> listWithContacts, File file) throws IOException {
         FileWriter writer = new FileWriter(file);
         for (int i = 0; i < listWithContacts.size(); i++) {
-            writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s \n",
+            writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s \n",
                                                                             listWithContacts.get(i).getFirstName(),
                                                                             listWithContacts.get(i).getMiddleName(),
                                                                             listWithContacts.get(i).getLastName(),
-                                                                            listWithContacts.get(i).getPhoto(),
+                                                                            listWithContacts.get(i).getNickname(),
+                                                                            //listWithContacts.get(i).getPhoto(),
                                                                             listWithContacts.get(i).getTitle(),
                                                                             listWithContacts.get(i).getAddress(),
                                                                             listWithContacts.get(i).getHomePhone(),
@@ -55,7 +56,8 @@ public class ContactDataGenerator {
                                                                             listWithContacts.get(i).getWorkPhone(),
                                                                             listWithContacts.get(i).getEmail(),
                                                                             listWithContacts.get(i).getEmail2(),
-                                                                            listWithContacts.get(i).getEmail3()));
+                                                                            listWithContacts.get(i).getEmail3(),
+                                                                            listWithContacts.get(i).getGroup()));
         }
         writer.flush();
         writer.close();
@@ -67,7 +69,8 @@ public class ContactDataGenerator {
             contacts.add(new ContactData().withFirstName(String.format("firstName %s", i))
                                             .withMiddleName(String.format("middleName %s", i))
                                             .withLastName(String.format("lastName %s", i))
-                                            .withPhoto(new File("src/test/resources/", "image.png"))
+                                            .withNickname(String.format("nickname %s", i))
+                                            //.withPhoto(new File("src/test/resources/", "image.png"))
                                             .withTitle(String.format("title %s", i))
                                             .withAddress(String.format("address %s", i))
                                             .withHomePhone("111")
@@ -75,7 +78,8 @@ public class ContactDataGenerator {
                                             .withWorkPhone("333")
                                             .withEmail("1@mail.ru")
                                             .withEmail2("2@mail.ru")
-                                            .withEmail3("3@mail.ru"));
+                                            .withEmail3("3@mail.ru")
+                                            .withGroup("aaa"));
         }
         return contacts;
     }
