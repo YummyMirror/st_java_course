@@ -14,4 +14,7 @@ dependencies {
 
     //Including Hamcrest library
     compile 'org.hamcrest:java-hamcrest:2.0.0.0'
+
+    //Including GSON library for json format
+    compile 'com.google.code.gson:gson:2.8.0'
 }
