@@ -44,7 +44,8 @@ public class GroupDataGenerator {
         for (int i = 0; i < listWithGroups.size(); i++) {
             writer.write(String.format("%s; %s; %s \n",
                                                             listWithGroups.get(i).getGroupName(),
-                                                            listWithGroups.get(i).getGroupHeader(), listWithGroups.get(i).getGroupFooter()));
+                                                            listWithGroups.get(i).getGroupHeader(),
+                                                            listWithGroups.get(i).getGroupFooter()));
         }
         writer.flush();
         writer.close();

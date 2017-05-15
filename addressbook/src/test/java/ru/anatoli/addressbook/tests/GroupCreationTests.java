@@ -45,9 +45,12 @@ public class GroupCreationTests extends TestBase {
             json += line;
             line = bufferedReader.readLine();
         }
+            //https://github.com/google/gson/blob/master/UserGuide.md#TOC-Object-Examples
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<GroupData>>(){}.getType(); //List<GroupData>.class
         List<GroupData> groups = gson.fromJson(json, collectionType);
+        bufferedReader.close();
+        reader.close();
         return groups.stream().map((g) -> new Object[] {g}).iterator();
     }
 

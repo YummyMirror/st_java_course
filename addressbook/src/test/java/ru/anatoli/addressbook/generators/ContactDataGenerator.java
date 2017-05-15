@@ -32,6 +32,7 @@ public class ContactDataGenerator {
     }
 
     private static void saveAsJson(List<ContactData> listWithContacts, File file) throws IOException {
+            //https://github.com/google/gson/blob/master/UserGuide.md#TOC-Object-Examples
         Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
         String json =  gson.toJson(listWithContacts);
         FileWriter writer = new FileWriter(file);

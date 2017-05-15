@@ -60,9 +60,11 @@ public class ContactCreationTests extends TestBase {
             json += line;
             line = bufferedReader.readLine();
         }
-        Gson gson = new Gson();
+        Gson gson = new Gson(); //https://github.com/google/gson/blob/master/UserGuide.md#TOC-Object-Examples
         Type collectionType = new TypeToken<List<ContactData>>(){}.getType();
         List<ContactData> contacts =  gson.fromJson(json, collectionType);
+        bufferedReader.close();
+        reader.close();
         return contacts.stream().map((c) -> new Object[] {c}).iterator();
     }
 
