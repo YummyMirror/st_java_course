@@ -8,6 +8,11 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import ru.anatoli.addressbook.models.UserData;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -15,6 +20,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class ApplicationManager {
     WebDriver wd;
+    private Properties properties;
     private String browser;
     private ContactHelper contactHelper;
     private SessionHelper sessionHelper;
@@ -26,8 +32,14 @@ public class ApplicationManager {
         this.browser = browser;
     }
 
-    public void init() {
-        UserData userData = new UserData("admin", "secret");
+    public void init() throws IOException {
+        String configFile = System.getProperty("configFile", "local.properties");
+        File file = new File("src/test/resources/", configFile);
+        FileReader reader = new FileReader(file);
+        properties = new Properties();
+        properties.load(reader);
+
+        UserData userData = new UserData(properties.getProperty("adminUser"), properties.getProperty("adminPassword"));
 
         System.setProperty("webdriver.gecko.driver", "E:\\Private\\Programs\\geckodriver\\geckodriver.exe");
 
@@ -44,7 +56,7 @@ public class ApplicationManager {
         sessionHelper = new SessionHelper(wd);
         contactHelper = new ContactHelper(wd);
         wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        getUrl("http://localhost/addressbook");
+        getUrl(properties.getProperty("baseUrl"));
         sessionHelper.login(userData);
     }
 
