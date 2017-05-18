@@ -24,6 +24,9 @@ dependencies {
             suites 'src/test/resources/testng-groups.xml'
         }
     }
+    
+    //Including DB driver
+    compile 'mysql:mysql-connector-java:6.0.6'
 
     //Including CONTACT configuration file
     task testContact(type: Test) {
