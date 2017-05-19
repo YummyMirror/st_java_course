@@ -17,6 +17,12 @@ dependencies {
 
     //Including GSON library for json format
     compile 'com.google.code.gson:gson:2.8.0'
+    
+    //Including DB driver
+    compile 'mysql:mysql-connector-java:6.0.6'
+    
+    //Including ORM
+    compile 'org.hibernate:hibernate-core:5.2.10.Final'
 
     //Including GROUP configuration file
     task testGroups(type: Test) {
@@ -24,9 +30,6 @@ dependencies {
             suites 'src/test/resources/testng-groups.xml'
         }
     }
-    
-    //Including DB driver
-    compile 'mysql:mysql-connector-java:6.0.6'
 
     //Including CONTACT configuration file
     task testContact(type: Test) {
