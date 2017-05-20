@@ -1,37 +1,80 @@
 package ru.anatoli.addressbook.models;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.io.File;
 
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
+    @Id
+    @Column(name = "id")
     private int id = Integer.MAX_VALUE;
+
     @Expose
+    @Column(name = "firstname")
     private String firstName;
+
     @Expose
+    @Column(name = "middlename")
     private String middleName;
+
     @Expose
+    @Column(name = "lastname")
     private String lastName;
+
     @Expose
+    @Column(name = "nickname")
     private String nickname;
+
     @Expose
-    private File photo;
+    @Column(name = "photo")
+    @Type(type = "text")
+    private String photo;
+
     @Expose
+    @Column(name = "title")
     private String title;
+
     @Expose
+    @Column(name = "address")
+    @Type(type = "text")
     private String address;
+
     @Expose
+    @Column(name = "home")
+    @Type(type = "text")
     private String homePhone;
+
     @Expose
+    @Column(name = "mobile")
+    @Type(type = "text")
     private String mobilePhone;
+
     @Expose
+    @Column(name = "work")
+    @Type(type = "text")
     private String workPhone;
+
     @Expose
+    @Column(name = "email")
+    @Type(type = "text")
     private String email;
+
     @Expose
+    @Column(name = "email2")
+    @Type(type = "text")
     private String email2;
+
     @Expose
+    @Column(name = "email3")
+    @Type(type = "text")
     private String email3;
+
     @Expose
+    @Transient //Ignoring
     private String group;
 
     //Getters
@@ -56,7 +99,7 @@ public class ContactData {
     }
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public String getTitle() {
@@ -152,7 +195,7 @@ public class ContactData {
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
@@ -196,5 +239,4 @@ public class ContactData {
         this.group = group;
         return this;
     }
-
 }

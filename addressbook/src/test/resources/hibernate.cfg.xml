@@ -30,6 +30,7 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="ru.anatoli.addressbook.models.GroupData"/>
+        <mapping class="ru.anatoli.addressbook.models.ContactData"/>
 
     </session-factory>
 
