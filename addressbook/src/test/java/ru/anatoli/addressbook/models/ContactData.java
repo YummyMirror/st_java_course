@@ -31,6 +31,7 @@ public class ContactData {
 
     @Expose
     @Column(name = "photo")
+    //@Transient //Ignoring
     @Type(type = "text")
     private String photo;
 
@@ -199,6 +200,21 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withNickname(String nickname) {
+        this.nickname = nickname;
+        return this;
+    }
+
+    public ContactData withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -223,20 +239,5 @@ public class ContactData {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 '}';
-    }
-
-    public ContactData withNickname(String nickname) {
-        this.nickname = nickname;
-        return this;
-    }
-
-    public ContactData withTitle(String title) {
-        this.title = title;
-        return this;
-    }
-
-    public ContactData withGroup(String group) {
-        this.group = group;
-        return this;
     }
 }

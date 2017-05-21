@@ -49,7 +49,7 @@ public class ContactDataGenerator {
                                                                             listWithContacts.get(i).getMiddleName(),
                                                                             listWithContacts.get(i).getLastName(),
                                                                             listWithContacts.get(i).getNickname(),
-                                                                            //listWithContacts.get(i).getPhoto(),
+                                                                            listWithContacts.get(i).getPhoto(),
                                                                             listWithContacts.get(i).getTitle(),
                                                                             listWithContacts.get(i).getAddress(),
                                                                             listWithContacts.get(i).getHomePhone(),
@@ -71,7 +71,7 @@ public class ContactDataGenerator {
                                             .withMiddleName(String.format("middleName %s", i))
                                             .withLastName(String.format("lastName %s", i))
                                             .withNickname(String.format("nickname %s", i))
-                                            //.withPhoto(new File("src/test/resources/", "image.png"))
+                                            .withPhoto(new File("src/test/resources/", "image.png"))
                                             .withTitle(String.format("title %s", i))
                                             .withAddress(String.format("address %s", i))
                                             .withHomePhone("111")
