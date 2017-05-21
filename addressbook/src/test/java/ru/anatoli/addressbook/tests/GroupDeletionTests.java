@@ -14,30 +14,43 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class GroupDeletionTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
+        if (applicationManager.getDbHelper().getGroups().size() == 0) {
+            applicationManager.getNavigationHelper().goToGroupPage();
+            GroupData groupData = new GroupData().withGroupName("temp group name")
+                                                    .withGroupHeader("temp group header")
+                                                    .withGroupFooter("temp group footer");
+            applicationManager.getGroupHelper().createGroup(groupData);
+        }
+        /*
         applicationManager.getNavigationHelper().goToGroupPage();
         //If there is no one group exist
         if (! applicationManager.getGroupHelper().isGroupExist()) {
-            GroupData groupData = new GroupData().withGroupName("temp group name").withGroupHeader("temp group header").withGroupFooter("temp group footer");
-
+            GroupData groupData = new GroupData().withGroupName("temp group name")
+                                                    .withGroupHeader("temp group header")
+                                                    .withGroupFooter("temp group footer");
             applicationManager.getGroupHelper().createGroup(groupData);
         }
+        */
     }
 
     @Test
     public void testGroupDeletion() {
         //Set<GroupData> before = applicationManager.getGroupHelper().getGroupSet();
-        Groups before = applicationManager.getGroupHelper().getGroupSet(); //remove after course
+        //Groups before = applicationManager.getGroupHelper().getGroupSet(); //remove after course
+        Groups before = applicationManager.getDbHelper().getGroups();
 
             //Random element
         GroupData deleteGroup = before.iterator().next();
+        applicationManager.getNavigationHelper().goToGroupPage();
         applicationManager.getGroupHelper().deleteGroup(deleteGroup);
 
         //Set<GroupData> after = applicationManager.getGroupHelper().getGroupSet();
-        Groups after = applicationManager.getGroupHelper().getGroupSet(); //remove after course
+        //Groups after = applicationManager.getGroupHelper().getGroupSet(); //remove after course
+        Groups after = applicationManager.getDbHelper().getGroups();
 
             //Asserting by size of collections
         //assertEquals(after.size(), before.size() - 1);
-        assertThat(after.size(), equalTo(before.size() - 1)); //remove after course
+        //assertThat(after.size(), equalTo(before.size() - 1)); //remove after course
 
         //before.remove(deleteGroup);
 
