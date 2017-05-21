@@ -62,16 +62,18 @@ public class GroupCreationTests extends TestBase {
     @Test(dataProvider = "validGroupDataFromJson")
     public void testGroupCreation(GroupData groupData) {
         //Set<GroupData> before = applicationManager.getGroupHelper().getGroupSet();
-        Groups before = applicationManager.getGroupHelper().getGroupSet();  //remove after course
+        //Groups before = applicationManager.getGroupHelper().getGroupSet();  //remove after course
+        Groups before = applicationManager.getDbHelper().getGroups();
 
         applicationManager.getGroupHelper().createGroup(groupData);
 
         //Set<GroupData> after = applicationManager.getGroupHelper().getGroupSet();
-        Groups after = applicationManager.getGroupHelper().getGroupSet();  //remove after course
+        //Groups after = applicationManager.getGroupHelper().getGroupSet();  //remove after course
+        Groups after = applicationManager.getDbHelper().getGroups();
 
             //Asserting by size of collections
         //assertEquals(after.size(), before.size() + 1);
-        assertThat(after.size(), equalTo(before.size() + 1)); //remove after course
+        //assertThat(after.size(), equalTo(before.size() + 1)); //remove after course
 
         //groupData.withId(after.stream().max((g1, g2) -> Integer.compare(g1.getId(), g2.getId())).get().getId());
         //before.add(groupData);
