@@ -76,16 +76,18 @@ public class ContactCreationTests extends TestBase {
     @Test(dataProvider = "validContactDataFromJson")
     public void testContactCreation(ContactData contactData) {
         //Set<ContactData> before = applicationManager.getContactHelper().getContactSet();
-        Contacts before = applicationManager.getContactHelper().getContactSet();  //remove after course
+        //Contacts before = applicationManager.getContactHelper().getContactSet();  //remove after course
+        Contacts before = applicationManager.getDbHelper().getContacts();
 
         applicationManager.getContactHelper().createContact(contactData);
 
         //Set<ContactData> after = applicationManager.getContactHelper().getContactSet();
-        Contacts after = applicationManager.getContactHelper().getContactSet(); //remove after course
+        //Contacts after = applicationManager.getContactHelper().getContactSet(); //remove after course
+        Contacts after = applicationManager.getDbHelper().getContacts();
 
             //Asserting by size of collections
         //assertEquals(after.size(), before.size() + 1);
-        assertThat(after.size(), equalTo(before.size() + 1));  //remove after course
+        //assertThat(after.size(), equalTo(before.size() + 1));  //remove after course
 
         //contactData.withId(after.stream().max((c1, c2) -> Integer.compare(c1.getId(), c2.getId())).get().getId());
         //before.add(contactData);
