@@ -13,18 +13,28 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class GroupModificationTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
+        if (applicationManager.getDbHelper().getGroups().size() == 0) {
+            applicationManager.getNavigationHelper().goToGroupPage();
+            GroupData groupData1 = new GroupData().withGroupName("temp group name")
+                                                    .withGroupHeader("temp group header")
+                                                    .withGroupFooter("temp group footer");
+            applicationManager.getGroupHelper().createGroup(groupData1);
+        }
+        /*
         applicationManager.getNavigationHelper().goToGroupPage();
         //If there is no one group exist
         if (! applicationManager.getGroupHelper().isGroupExist()) {
             GroupData groupData1 = new GroupData().withGroupName("temp group name").withGroupHeader("temp group header").withGroupFooter("temp group footer");
             applicationManager.getGroupHelper().createGroup(groupData1);
         }
+        */
     }
 
     @Test
     public void testGroupModification() {
         //Set<GroupData> before = applicationManager.getGroupHelper().getGroupSet();
-        Groups before = applicationManager.getGroupHelper().getGroupSet(); //remove after course
+        //Groups before = applicationManager.getGroupHelper().getGroupSet(); //remove after course
+        Groups before = applicationManager.getDbHelper().getGroups();
 
             //Random element
         GroupData modifyGroup = before.iterator().next();
@@ -32,14 +42,16 @@ public class GroupModificationTests extends TestBase {
                                             .withGroupName("aaa11")
                                             .withGroupHeader("bbb22")
                                             .withGroupFooter("ccc33");
+        applicationManager.getNavigationHelper().goToGroupPage();
         applicationManager.getGroupHelper().modifyGroup(groupData);
 
         //Set<GroupData> after = applicationManager.getGroupHelper().getGroupSet();
-        Groups after = applicationManager.getGroupHelper().getGroupSet(); //remove after course
+        //Groups after = applicationManager.getGroupHelper().getGroupSet(); //remove after course
+        Groups after = applicationManager.getDbHelper().getGroups();
 
             //Asserting by size of collections
         //assertEquals(after.size(), before.size());
-        assertThat(after.size(), equalTo(before.size())); //remove after course
+        //assertThat(after.size(), equalTo(before.size())); //remove after course
 
         //before.remove(modifyGroup);
         //before.add(groupData);
