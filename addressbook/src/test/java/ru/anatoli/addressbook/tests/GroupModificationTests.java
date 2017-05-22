@@ -1,5 +1,6 @@
 package ru.anatoli.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
@@ -59,5 +60,6 @@ public class GroupModificationTests extends TestBase {
             //Asserting collections
         //assertEquals(before, after);
         assertThat(after, equalTo(before.without(modifyGroup).withAdded(groupData))); //remove after course
+        compareBDvsUIdata();
     }
 }
