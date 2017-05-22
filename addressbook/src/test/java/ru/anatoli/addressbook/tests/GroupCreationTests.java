@@ -82,6 +82,6 @@ public class GroupCreationTests extends TestBase {
         //assertEquals(before, after);
         assertThat(after, equalTo(before.withAdded(groupData.withId(
                                 after.stream().max((g1, g2) -> Integer.compare(g1.getId(), g2.getId())).get().getId())))); //remove after course
-        compareBDvsUIdata();
+        compareBDvsUIdataGroups();
     }
 }

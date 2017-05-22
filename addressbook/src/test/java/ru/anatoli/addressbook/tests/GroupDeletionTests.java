@@ -57,6 +57,6 @@ public class GroupDeletionTests extends TestBase {
             //Asserting by collections
         //assertEquals(before, after);
         assertThat(after, equalTo(before.without(deleteGroup))); //remove after course
-        compareBDvsUIdata();
+        compareBDvsUIdataGroups();
     }
 }

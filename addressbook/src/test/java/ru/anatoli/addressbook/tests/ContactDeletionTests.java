@@ -58,5 +58,6 @@ public class ContactDeletionTests extends TestBase {
             //Asserting by collections
         //assertEquals(before, after);
         assertThat(after, equalTo(before.without(deleteContact)));  //remove after course
+        compareBDvsUIdataContacts();
     }
 }

@@ -96,5 +96,6 @@ public class ContactCreationTests extends TestBase {
         //assertEquals(before, after);
         assertThat(after, equalTo(before.withAdded(
                         contactData.withId(after.stream().max((c1, c2) -> Integer.compare(c1.getId(), c2.getId())).get().getId()))));  //remove after course
+        compareBDvsUIdataContacts();
     }
 }

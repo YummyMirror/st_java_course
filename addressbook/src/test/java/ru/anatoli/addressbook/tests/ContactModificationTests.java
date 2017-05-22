@@ -80,5 +80,6 @@ public class ContactModificationTests extends TestBase {
             //Asserting by sorted collections
         //assertEquals(before, after);
         assertThat(after, equalTo(before.without(modifyContact).withAdded(contactData)));  //remove after course
+        compareBDvsUIdataContacts();
     }
 }
