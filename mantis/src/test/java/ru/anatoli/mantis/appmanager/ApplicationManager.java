@@ -65,4 +65,12 @@ public class ApplicationManager {
             return false;
         }
     }
+
+    public String getProperty(String value) {
+        return properties.getProperty(value);
+    }
+
+    public HttpSessionHelper session() {
+        return new HttpSessionHelper(this);
+    }
 }
