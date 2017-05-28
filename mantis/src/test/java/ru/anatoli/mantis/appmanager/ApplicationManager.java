@@ -20,6 +20,7 @@ public class ApplicationManager {
     WebDriver wd;
     private Properties properties;
     private String browser;
+    private RegistrationHelper registrationHelper;
 
     //Constructor
     public ApplicationManager(String browser) {
@@ -33,20 +34,7 @@ public class ApplicationManager {
         properties = new Properties();
         properties.load(reader);
 
-        UserData userData = new UserData(properties.getProperty("adminUser"), properties.getProperty("adminPassword"));
-
         System.setProperty("webdriver.gecko.driver", "E:\\Private\\Programs\\geckodriver\\geckodriver.exe");
-
-        //Choosing browser
-        if (browser.equals(BrowserType.FIREFOX)) {
-            wd = new FirefoxDriver();
-        }else if (browser.equals(BrowserType.CHROME)) {
-            wd = new ChromeDriver();
-        }else if (browser.equals(BrowserType.IE)) {
-            wd = new InternetExplorerDriver();
-        }
-        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        getUrl(properties.getProperty("baseUrl"));
     }
 
     public void getUrl(String url) {
@@ -54,7 +42,9 @@ public class ApplicationManager {
     }
 
     public void stop() {
-        wd.quit();
+        if (wd != null) {
+            wd.quit();
+        }
     }
 
     public static boolean isAlertPresent(FirefoxDriver wd) {
@@ -72,5 +62,28 @@ public class ApplicationManager {
 
     public HttpSessionHelper session() {
         return new HttpSessionHelper(this);
+    }
+
+    public RegistrationHelper registrationHelper() {
+        if (registrationHelper == null) {
+            registrationHelper = new RegistrationHelper(this);
+        }
+        return registrationHelper;
+    }
+
+    public WebDriver getDriver() {
+        if (wd == null) {
+            //Choosing browser
+            if (browser.equals(BrowserType.FIREFOX)) {
+                wd = new FirefoxDriver();
+            }else if (browser.equals(BrowserType.CHROME)) {
+                wd = new ChromeDriver();
+            }else if (browser.equals(BrowserType.IE)) {
+                wd = new InternetExplorerDriver();
+            }
+            wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+            getUrl(properties.getProperty("baseUrl"));
+        }
+        return wd;
     }
 }
