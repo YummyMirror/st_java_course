@@ -17,11 +17,12 @@ import java.util.concurrent.TimeUnit;
  * Created by anatoli.anukevich on 4/19/2017.
  */
 public class ApplicationManager {
-    WebDriver wd;
+    private WebDriver wd;
     private Properties properties;
     private String browser;
     private RegistrationHelper registrationHelper;
     private FtpHelper ftpHelper;
+    private MailHelper mailHelper;
 
     //Constructor
     public ApplicationManager(String browser) {
@@ -77,6 +78,13 @@ public class ApplicationManager {
             ftpHelper = new FtpHelper(this);
         }
         return ftpHelper;
+    }
+
+    public MailHelper mailHelper() {
+        if (mailHelper == null) {
+            mailHelper = new MailHelper(this);
+        }
+        return mailHelper;
     }
 
     public WebDriver getDriver() {

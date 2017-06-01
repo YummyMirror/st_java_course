@@ -14,4 +14,12 @@ dependencies {
 
     //Including library for FTP
     compile 'commons-net:commons-net:3.6'
+    
+    //Including library for EMAIL receiving
+    compile 'org.subethamail:subethasmtp:3.1.7'
+
+    //Including library for RegExp
+    compile 'ru.lanwen.verbalregex:java-verbal-expressions:1.4'
+
+    compile 'org.slf4j:slf4j-simple:1.7.9'
 }

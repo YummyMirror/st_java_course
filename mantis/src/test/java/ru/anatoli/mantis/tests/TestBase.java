@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by anatoli.anukevich on 4/19/2017.
  */
 public class TestBase {
-    protected static final ApplicationManager applicationManager = new ApplicationManager(BrowserType.IE);
+    protected static final ApplicationManager applicationManager = new ApplicationManager(BrowserType.FIREFOX);
 
     @BeforeSuite
     public void setUp() throws Exception {
