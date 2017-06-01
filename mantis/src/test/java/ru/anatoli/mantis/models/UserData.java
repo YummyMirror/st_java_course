@@ -1,21 +1,60 @@
 package ru.anatoli.mantis.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "mantis_user_table")
 public class UserData {
-    private final String userName;
-    private final String password;
+    @Id
+    @Column
+    private int id;
+    @Column(name = "username")
+    private String username;
+    @Column(name = "email")
+    private String email;
 
-    //Constructor
-    public UserData(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+    @Override
+    public String toString() {
+        return "UserData{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 
-    //Getters
-    public String getUserName() {
-        return userName;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserData userData = (UserData) o;
+
+        if (id != userData.id) return false;
+        if (username != null ? !username.equals(userData.username) : userData.username != null) return false;
+        return email != null ? email.equals(userData.email) : userData.email == null;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        return result;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
+

@@ -23,6 +23,9 @@ public class ApplicationManager {
     private RegistrationHelper registrationHelper;
     private FtpHelper ftpHelper;
     private MailHelper mailHelper;
+    private LoginHelper loginHelper;
+    private NavigationHelper navigationHelper;
+    private DbHelper dbHelper;
 
     //Constructor
     public ApplicationManager(String browser) {
@@ -71,6 +74,24 @@ public class ApplicationManager {
             registrationHelper = new RegistrationHelper(this);
         }
         return registrationHelper;
+    }
+
+    public LoginHelper loginHelper() throws Exception {
+        if (loginHelper() == null) {
+            loginHelper = new LoginHelper(this);
+        }
+        return  loginHelper();
+    }
+
+    public NavigationHelper navigationHelper() throws Exception {
+        if (navigationHelper == null) {
+            navigationHelper = new NavigationHelper(this);
+        }
+        return  navigationHelper;
+    }
+
+    public DbHelper dbHelper() {
+        return dbHelper;
     }
 
     public FtpHelper ftpHelper() {
