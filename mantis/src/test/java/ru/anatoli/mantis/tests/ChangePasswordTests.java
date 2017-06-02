@@ -31,7 +31,7 @@ public class ChangePasswordTests extends TestBase {
         UserData selectUser = applicationManager.dbHelper().getUsers().stream().filter((u) -> username.equals(u.getUsername())).iterator().next();
         applicationManager.navigationHelper().clickUser(selectUser.getId());
         applicationManager.navigationHelper().resetPassword();
-        
+
         List<MailMessage> mailMessages = applicationManager.mailHelper().waitForMail(2,10000);
         String confirmationLink = findConfirmationLink(mailMessages, selectUser.getEmail());
         applicationManager.navigationHelper().changePassword(confirmationLink,newPassword);

@@ -10,3 +10,34 @@ repositories {
 dependencies {
     compile 'org.testng:testng:6.11'
 }
+
+//Including wsdl2java
+//https://github.com/nilsmagnus/wsdl2java
+buildscript{
+    repositories{
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'no.nils:wsdl2java:0.10'
+    }
+}
+apply plugin: 'no.nils.wsdl2java'
+
+//Setting options of wsdl2java for GeoIP
+wsdl2java {
+    generatedWsdlDir = file("src/main/java/geoIP")  // target directory for generated source coude
+    wsdlDir = file("src/main/resources") // define to support incremental build
+    wsdlsToGenerate = [   //  2d-array of wsdls and cxf-parameters
+                          ['src/main/resources/geoipservice.wsdl']
+    ]
+}
+
+//Setting options of wsdl2java for GlobalWeather
+wsdl2java {
+    generatedWsdlDir = file("src/main/java/globalWeather")  // target directory for generated source coude
+    wsdlDir = file("src/main/resources") // define to support incremental build
+    wsdlsToGenerate = [   //  2d-array of wsdls and cxf-parameters
+                          ['src/main/resources/globalweather.wsdl']
+    ]
+}
