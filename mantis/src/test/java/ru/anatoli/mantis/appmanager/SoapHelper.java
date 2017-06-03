@@ -1,6 +1,7 @@
 package ru.anatoli.mantis.appmanager;
 
 import biz.futureware.mantis.rpc.soap.client.*;
+import org.testng.SkipException;
 import ru.anatoli.mantis.models.Issue;
 import ru.anatoli.mantis.models.Project;
 import javax.xml.rpc.ServiceException;
