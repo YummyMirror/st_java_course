@@ -26,6 +26,7 @@ public class ApplicationManager {
     private LoginHelper loginHelper;
     private NavigationHelper navigationHelper;
     private DbHelper dbHelper;
+    private SoapHelper soapHelper;
 
     //Constructor
     public ApplicationManager(String browser) {
@@ -106,6 +107,13 @@ public class ApplicationManager {
             mailHelper = new MailHelper(this);
         }
         return mailHelper;
+    }
+
+    public SoapHelper soapHelper() {
+        if (soapHelper == null) {
+            soapHelper = new SoapHelper(this);
+        }
+        return soapHelper;
     }
 
     public WebDriver getDriver() {
