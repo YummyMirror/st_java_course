@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook_main.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook_main.iml" group="addressbook" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook_test.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook_test.iml" group="addressbook" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bugify.iml" filepath="$PROJECT_DIR$/.idea/modules/bugify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bugify_main.iml" filepath="$PROJECT_DIR$/.idea/modules/bugify_main.iml" group="bugify" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bugify_test.iml" filepath="$PROJECT_DIR$/.idea/modules/bugify_test.iml" group="bugify" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mantis.iml" filepath="$PROJECT_DIR$/.idea/modules/mantis.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mantis_main.iml" filepath="$PROJECT_DIR$/.idea/modules/mantis_main.iml" group="mantis" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/mantis_test.iml" filepath="$PROJECT_DIR$/.idea/modules/mantis_test.iml" group="mantis" />

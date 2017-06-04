@@ -1,0 +1,23 @@
+apply plugin: 'java'
+
+//Repository and dependency for TestNG
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //Including TestNG framework
+    compile 'org.testng:testng:6.11'
+
+    //Including library for FTP
+    compile 'commons-net:commons-net:3.6'
+
+    //Including GSON
+    compile 'com.google.code.gson:gson:2.8.0'
+
+    //Including HTTPClient
+    compile 'org.apache.httpcomponents:httpclient:4.5.3'
+
+    //Including library for fluent API
+    compile 'org.apache.httpcomponents:fluent-hc:4.5.3'
+}
