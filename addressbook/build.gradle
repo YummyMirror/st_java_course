@@ -27,14 +27,14 @@ dependencies {
     //Including GROUP configuration file
     task testGroups(type: Test) {
         useTestNG {
-            suites 'src/test/resources/testng-groups.xml'
+            suites 'src/bugify/resources/testng-groups.xml'
         }
     }
 
     //Including CONTACT configuration file
     task testContact(type: Test) {
         useTestNG {
-            suites 'src/test/resources/testng-contacts.xml'
+            suites 'src/bugify/resources/testng-contacts.xml'
         }
     }
 }

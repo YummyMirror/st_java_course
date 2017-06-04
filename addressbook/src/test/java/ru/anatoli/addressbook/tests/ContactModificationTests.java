@@ -53,7 +53,7 @@ public class ContactModificationTests extends TestBase {
                                                     .withMiddleName("bbb1")
                                                     .withLastName("ccc1")
                                                     .withNickname("ddd1")
-                                                    .withPhoto(new File("src/test/resources/", "image.png"))
+                                                    .withPhoto(new File("src/bugify/resources/", "image.png"))
                                                     .withTitle("eee1")
                                                     .withAddress("address")
                                                     .withHomePhone("111")

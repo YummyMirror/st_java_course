@@ -25,7 +25,7 @@ public class TestBase {
     @BeforeSuite
     public void setUp() throws Exception {
         applicationManager.init();
-        applicationManager.ftpHelper().uploadFile("src/test/resources/config_inc.php", "config_inc.php", "config_inc.php.bak");
+        applicationManager.ftpHelper().uploadFile("src/bugify/resources/config_inc.php", "config_inc.php", "config_inc.php.bak");
     }
 
     @AfterSuite
@@ -59,7 +59,7 @@ public class TestBase {
 
     public void skipIfNotFixed(int issueId) throws RemoteException, ServiceException, MalformedURLException {
         if (isIssueOpen(issueId)) {
-            System.out.println("Dude, your test is ignored due to there is no bugfix exist yet");
+            System.out.println("Dude, your bugify is ignored due to there is no bugfix exist yet");
             throw new SkipException("Ignored because of issue " + issueId);
         }
     }

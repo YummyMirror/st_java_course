@@ -34,8 +34,8 @@ public class SoapTests extends TestBase {
 
         Set<Project> projects = applicationManager.soapHelper().getProjects();
         Project randomProject = projects.iterator().next();
-        Issue issue = new Issue().withSummary("test summary5")
-                                    .withDescription("test description5")
+        Issue issue = new Issue().withSummary("bugify summary5")
+                                    .withDescription("bugify description5")
                                     .withProject(randomProject);
         Issue created = applicationManager.soapHelper().createIssue(issue);
         assertEquals(issue.getSummary(), created.getSummary());

@@ -1,4 +1,4 @@
-package ru.anatoli.test;
+package ru.anatoli.bugify.models;
 
 /**
  * Created by anatoli.anukevich on 6/4/2017.
@@ -7,6 +7,7 @@ public class Issue {
     private int id;
     private String subject;
     private String description;
+    private String state_name;
 
     //Getters
     public int getId() {
@@ -19,6 +20,10 @@ public class Issue {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getState_name() {
+        return state_name;
     }
 
     //Setters
@@ -34,6 +39,11 @@ public class Issue {
 
     public Issue withDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public Issue withState_name(String state_name) {
+        this.state_name = state_name;
         return this;
     }
 

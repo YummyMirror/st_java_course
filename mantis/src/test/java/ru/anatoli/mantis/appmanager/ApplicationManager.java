@@ -35,7 +35,7 @@ public class ApplicationManager {
 
     public void init() throws IOException {
         String configFile = System.getProperty("configFile", "local.properties");
-        File file = new File("src/test/resources/", configFile);
+        File file = new File("src/bugify/resources/", configFile);
         FileReader reader = new FileReader(file);
         properties = new Properties();
         properties.load(reader);
