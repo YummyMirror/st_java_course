@@ -19,7 +19,8 @@ public class ContactDeletionTests extends TestBase {
                                                         .withMiddleName("temp MiddleName")
                                                         .withLastName("temp LastName")
                                                         .withNickname("temp nickname")
-                                                        .withTitle("temp Title").withGroup("aaa");
+                                                        //.withTitle("temp Title").withGroup("aaa")
+                    ;
             applicationManager.getContactHelper().createContact(contactData);
         }
         /*

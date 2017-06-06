@@ -1,6 +1,7 @@
 package ru.anatoli.addressbook.tests;
 
 import com.google.gson.Gson;
+import ru.anatoli.addressbook.models.Groups;
 import com.google.gson.reflect.TypeToken;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -41,7 +42,8 @@ public class ContactCreationTests extends TestBase {
                                         .withEmail(splitData[9])
                                         .withEmail2(splitData[10])
                                         .withEmail3(splitData[11])
-                                        .withGroup("aaa")});
+                                        //.withGroup("aaa")
+            });
             line = bufferedReader.readLine();
         }
         bufferedReader.close();
@@ -51,7 +53,7 @@ public class ContactCreationTests extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validContactDataFromJson() throws IOException {
-        File file = new File("src/bugify/resources/", "contactFile.json");
+        File file = new File("src/test/resources/", "contactFile.json");
         FileReader reader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(reader);
         String line = bufferedReader.readLine();

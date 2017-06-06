@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.anatoli.addressbook.models.ContactData;
 import ru.anatoli.addressbook.models.Contacts;
+import ru.anatoli.addressbook.models.GroupData;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -201,5 +202,19 @@ public class ContactHelper extends HelperBase {
 
     public void infoContactById(int id) {
         wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
+    }
+
+    private void groupChoose(GroupData group) {
+        new Select(wd.findElement(By.name("to_group"))).selectByValue(Integer.toString(group.getId()));
+    }
+
+    private void addGroups() {
+        click(By.name("add"));
+    }
+
+    public void addContactGroups(ContactData contact, GroupData group) {
+        selectContactById(contact.getId());
+        groupChoose(group);
+        addGroups();
     }
 }

@@ -23,7 +23,8 @@ public class ContactModificationTests extends TestBase {
                                                         .withLastName("temp LastName")
                                                         .withNickname("temp nickname")
                                                         .withTitle("temp title")
-                                                        .withGroup("aaa");
+                                                        //.withGroup("aaa")
+                    ;
             applicationManager.getContactHelper().createContact(contactData1);
         }
         /*
