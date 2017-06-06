@@ -34,13 +34,14 @@ public class ApplicationManager {
     }
 
     public void init() throws IOException {
-        String configFile = System.getProperty("configFile", "local.properties");
-        File file = new File("src/bugify/resources/", configFile);
-        FileReader reader = new FileReader(file);
-        properties = new Properties();
-        properties.load(reader);
+//        String configFile = System.getProperty("configFile", "local.properties");
+//        File file = new File("src/test/resources/", configFile);
+//        FileReader reader = new FileReader(file);
+//        properties = new Properties();
+//        properties.load(reader);
 
-        UserData userData = new UserData(properties.getProperty("adminUser"), properties.getProperty("adminPassword"));
+        //UserData userData = new UserData(properties.getProperty("adminUser"), properties.getProperty("adminPassword"));
+        UserData userData = new UserData("admin", "secret");
 
         System.setProperty("webdriver.gecko.driver", "E:\\Private\\Programs\\geckodriver\\geckodriver.exe");
 
@@ -58,7 +59,8 @@ public class ApplicationManager {
         sessionHelper = new SessionHelper(wd);
         contactHelper = new ContactHelper(wd);
         wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        getUrl(properties.getProperty("baseUrl"));
+        //getUrl("baseUrl");
+        getUrl("http://localhost/addressbook");
         sessionHelper.login(userData);
     }
 
