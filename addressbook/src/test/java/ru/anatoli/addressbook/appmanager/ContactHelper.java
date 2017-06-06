@@ -169,7 +169,7 @@ public class ContactHelper extends HelperBase {
     public ContactData infoFromEditForm(ContactData randObject) {
         initiateContactModificationById(randObject.getId());
         String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
-        String middleName = wd.findElement(By.name("middlename")).getAttribute("value");
+        //String middleName = wd.findElement(By.name("middlename")).getAttribute("value");
         String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
         String homePhone = wd.findElement(By.name("home")).getAttribute("value");
         String mobilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
@@ -180,7 +180,7 @@ public class ContactHelper extends HelperBase {
         String address = wd.findElement(By.name("address")).getText();
 
         ContactData contactData = new ContactData().withFirstName(firstName)
-                                                    .withMiddleName(middleName)
+                                                    //.withMiddleName(middleName)
                                                     .withLastName(lastName)
                                                     .withHomePhone(homePhone)
                                                     .withMobilePhone(mobilePhone)
@@ -191,5 +191,15 @@ public class ContactHelper extends HelperBase {
                                                     .withAddress(address);
         wd.navigate().back();
         return contactData;
+    }
+
+    public String infoFromViewForm(ContactData contactData){
+        infoContactById(contactData.getId());
+        String content = wd.findElement(By.id("content")).getText();
+        return content;
+    }
+
+    public void infoContactById(int id) {
+        wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
     }
 }
