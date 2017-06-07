@@ -1,36 +1,33 @@
 package ru.anatoli.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.ContactData;
 import ru.anatoli.addressbook.models.Contacts;
 import ru.anatoli.addressbook.models.GroupData;
 import ru.anatoli.addressbook.models.Groups;
-
 import java.io.File;
-
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 /**
- * Created by anatoli.anukevich on 6/6/2017.
+ * Created by anatoli.anukevich on 6/7/2017.
  */
-public class AddContactGroupTests extends TestBase {
+public class ContactDeleteGroupTests extends TestBase {
     @BeforeMethod
-    public void ensurePreconditions() {
-        if (applicationManager.getDbHelper().getGroups().size() == 0) {
+    public void ensurePreconditions(){
+        if(applicationManager.getDbHelper().getGroups().size() == 0){
             applicationManager.getNavigationHelper().goToGroupPage();
 
-            GroupData groupData = new GroupData().withGroupName("aaa");
+            GroupData groupData = new GroupData().withGroupName("test1");
             applicationManager.getGroupHelper().createGroup(groupData);
         }
 
-        if (applicationManager.getDbHelper().getContacts().size() == 0) {
+        if(applicationManager.getDbHelper().getContacts().size() == 0) {
             applicationManager.getNavigationHelper().goToHomePage();
+            applicationManager.getContactHelper().initiateContactCreation();
 
-            ContactData contactData = new ContactData().withFirstName("temp FirstName")
-                                                        .withMiddleName("middleName")
+            ContactData contactData = new ContactData().withFirstName("firstName")
+                                                        //.withMiddleName("middleName")
                                                         .withLastName("lastName")
                                                         .withNickname("nickname")
                                                         .withPhoto(new File("src/test/resources/", "image.png"))
@@ -47,25 +44,23 @@ public class AddContactGroupTests extends TestBase {
     }
 
     @Test
-    public void testAddContactGroup() {
-        Contacts contacts = applicationManager.getDbHelper().getContacts();
-        ContactData randomContact = contacts.iterator().next();
+    public void testContactDeleteGroup() {
+        applicationManager.getNavigationHelper().goToHomePage();
 
         Groups groups = applicationManager.getDbHelper().getGroups();
-        GroupData group;
+        GroupData randomGroup = groups.iterator().next();
+        applicationManager.getContactHelper().selectGroupBeforeDelete(randomGroup);
 
-        if (groups.equals(randomContact.getGroups())) {
-            applicationManager.getGroupHelper().createGroup(new GroupData().withGroupName("new_group"));
-            groups = applicationManager.getDbHelper().getGroups();
-        }
-        groups.removeAll(randomContact.getGroups());
-        group = groups.iterator().next();
+        //BEFORE
+        Contacts before = applicationManager.getDbHelper().getContacts();
+        ContactData removedContact = before.iterator().next();
+        applicationManager.getContactHelper().removeSelectedContactFromGroup(removedContact);
 
         applicationManager.getNavigationHelper().goToHomePage();
-        applicationManager.getContactHelper().addContactGroups(randomContact, group);
 
-        applicationManager.getDbHelper().refresh(randomContact);
+        //AFTER
+        Contacts after = applicationManager.getDbHelper().getContacts();
 
-        assertThat(randomContact.getGroups(), hasItem(group));
+        assertEquals(before, after);
     }
 }

@@ -3,10 +3,9 @@ package ru.anatoli.addressbook.models;
 import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "group_list")
@@ -29,6 +28,9 @@ public class GroupData {
     @Type(type = "text")
     private String groupFooter;
 
+    @ManyToMany(mappedBy = "groups")
+    private Set<ContactData> contacts = new HashSet<ContactData>();
+
     //Getters
     public int getId() {
         return id;
@@ -44,6 +46,10 @@ public class GroupData {
 
     public String getGroupFooter() {
         return groupFooter;
+    }
+
+    public Contacts getContacts() {
+        return new Contacts(contacts);
     }
 
     //Setters

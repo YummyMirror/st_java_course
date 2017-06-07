@@ -52,11 +52,11 @@ public class ContactHelper extends HelperBase {
         input(By.name("email2"), contactData.getEmail2());
         input(By.name("email3"), contactData.getEmail3());
 
-        if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        }else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
+//        if (creation) {
+//            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+//        }else {
+//            Assert.assertFalse(isElementPresent(By.name("new_group")));
+//        }
     }
 
     public void selectContact(int index) {
@@ -64,7 +64,7 @@ public class ContactHelper extends HelperBase {
     }
 
     private void selectContactById(int id) {
-        wd.findElement(By.cssSelector("input[id = '" + id + "']")).click();
+        click(By.xpath("//input[@id='" + id + "']"));
     }
 
     public void deleteSelectedContact() {
@@ -216,5 +216,18 @@ public class ContactHelper extends HelperBase {
         selectContactById(contact.getId());
         groupChoose(group);
         addGroups();
+    }
+
+    public void selectGroupBeforeDelete(GroupData groupData){
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(groupData.getGroupName());
+    }
+
+    public void removeSelectedContactFromGroup(ContactData contactData) {
+        selectContactById(contactData.getId());
+        deleteContactFromGroup();
+    }
+
+    private void deleteContactFromGroup() {
+        click(By.name("remove"));
     }
 }
