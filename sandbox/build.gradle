@@ -41,3 +41,7 @@ wsdl2java {
                           ['src/main/resources/globalweather.wsdl']
     ]
 }
+
+test {
+    useTestNG()
+}
