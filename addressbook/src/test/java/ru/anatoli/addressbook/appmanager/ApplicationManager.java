@@ -60,8 +60,9 @@ public class ApplicationManager {
                 wd = new InternetExplorerDriver();
             }
         } else {
-            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-            desiredCapabilities.setBrowserName(browser);
+            DesiredCapabilities desiredCapabilities = new DesiredCapabilities().firefox();
+            desiredCapabilities.setBrowserName("FireFox");
+            //desiredCapabilities.setBrowserName(browser);
             wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), desiredCapabilities);
         }
 
