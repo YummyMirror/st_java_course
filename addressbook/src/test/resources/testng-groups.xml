@@ -4,8 +4,8 @@
     <test name="Groups" >
         <classes>
             <class name="ru.anatoli.addressbook.tests.GroupCreationTests" />
-            <class name="ru.anatoli.addressbook.tests.GroupModificationTests" />
-            <class name="ru.anatoli.addressbook.tests.GroupDeletionTests" />
+            <!-- <class name="ru.anatoli.addressbook.tests.GroupModificationTests" /> -->
+            <!-- <class name="ru.anatoli.addressbook.tests.GroupDeletionTests" /> -->
         </classes>
     </test>
 </suite>

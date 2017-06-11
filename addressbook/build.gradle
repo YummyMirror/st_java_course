@@ -24,6 +24,10 @@ dependencies {
     //Including ORM
     compile 'org.hibernate:hibernate-core:5.2.10.Final'
 
+    test {
+        useTestNG()
+    }
+
     //Including GROUP configuration file
     task testGroups(type: Test) {
         useTestNG {
