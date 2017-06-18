@@ -26,7 +26,9 @@ public class GroupCreationTests extends TestBase {
         while (line != null) {
             //line.replaceAll("\\s", "");
             String splitData[] = line.split(";");
-            list.add(new Object[] {new GroupData().withGroupName(splitData[0]).withGroupHeader(splitData[1]).withGroupFooter(splitData[2])});
+            list.add(new Object[] {new GroupData().withGroupName(splitData[0])
+                                                    .withGroupHeader(splitData[1])
+                                                    .withGroupFooter(splitData[2])});
             line = bufferedReader.readLine();
         }
         bufferedReader.close();
