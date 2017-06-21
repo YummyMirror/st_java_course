@@ -1,8 +1,6 @@
 package ru.anatoli.addressbook.appmanager;
 
-import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -51,7 +49,7 @@ public class ApplicationManager {
 
         dbHelper = new DbHelper();
         //Choosing browser
-        if ("".equals(properties.getProperty("selenium.server"))) {
+        //if ("".equals(properties.getProperty("selenium.server"))) {
             if (browser.equals(BrowserType.FIREFOX)) {
                 wd = new FirefoxDriver();
             }else if (browser.equals(BrowserType.CHROME)) {
@@ -59,12 +57,12 @@ public class ApplicationManager {
             }else if (browser.equals(BrowserType.IE)) {
                 wd = new InternetExplorerDriver();
             }
-        } else {
-            DesiredCapabilities desiredCapabilities = new DesiredCapabilities().firefox();
-            desiredCapabilities.setBrowserName("FireFox");
-            //desiredCapabilities.setBrowserName(browser);
-            wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), desiredCapabilities);
-        }
+//        } else {
+//            DesiredCapabilities desiredCapabilities = new DesiredCapabilities().firefox();
+//            desiredCapabilities.setBrowserName("FireFox");
+//            //desiredCapabilities.setBrowserName(browser);
+//            wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), desiredCapabilities);
+//        }
 
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
@@ -112,5 +110,9 @@ public class ApplicationManager {
 
     public DbHelper getDbHelper() {
         return dbHelper;
+    }
+
+    public byte[] takeScreenshot() {
+        return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
     }
 }

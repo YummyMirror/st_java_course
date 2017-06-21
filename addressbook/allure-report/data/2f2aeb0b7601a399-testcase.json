@@ -1,0 +1,38 @@
+{
+  "uid" : "2f2aeb0b7601a399",
+  "name" : "testGroupDeletion",
+  "title" : "Test group deletion",
+  "time" : {
+    "start" : 1497810563749,
+    "stop" : 1497810563750,
+    "duration" : 1
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : {
+    "message" : "NullPointerException: null",
+    "stackTrace" : "java.lang.NullPointerException\n\tat ru.anatoli.addressbook.appmanager.ApplicationManager.init(ApplicationManager.java:54)\n\tat ru.anatoli.addressbook.tests.TestBase.setUp(TestBase.java:27)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)\n\tat org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:523)\n\tat org.testng.internal.Invoker.invokeConfigurations(Invoker.java:224)\n\tat org.testng.internal.Invoker.invokeConfigurations(Invoker.java:146)\n\tat org.testng.SuiteRunner.privateRun(SuiteRunner.java:326)\n\tat org.testng.SuiteRunner.run(SuiteRunner.java:289)\n\tat org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)\n\tat org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)\n\tat org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)\n\tat org.testng.TestNG.runSuitesLocally(TestNG.java:1226)\n\tat org.testng.TestNG.runSuites(TestNG.java:1144)\n\tat org.testng.TestNG.run(TestNG.java:1115)\n\tat org.testng.IDEARemoteTestNG.run(IDEARemoteTestNG.java:72)\n\tat org.testng.RemoteTestNGStarter.main(RemoteTestNGStarter.java:127)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)\n"
+  },
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "CANCELED",
+  "suite" : {
+    "uid" : "691fbe6ad482a3e",
+    "name" : "Suite1",
+    "title" : "Suite 1"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "testIds" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Suite1"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  } ],
+  "parameters" : [ ]
+}

@@ -1,0 +1,295 @@
+{
+  "hosts" : [ {
+    "title" : "default",
+    "threads" : [ {
+      "title" : "default",
+      "testCases" : [ {
+        "uid" : "906af23b89b135ea",
+        "name" : "testGroupCreation",
+        "title" : "Test group creation",
+        "time" : {
+          "start" : 1497810563739,
+          "stop" : 1497810563742,
+          "duration" : 3
+        },
+        "severity" : "NORMAL",
+        "status" : "CANCELED"
+      }, {
+        "uid" : "9bd203b7b9c75055",
+        "name" : "testGroupModification",
+        "title" : "Test group modification",
+        "time" : {
+          "start" : 1497810563745,
+          "stop" : 1497810563745,
+          "duration" : 0
+        },
+        "severity" : "NORMAL",
+        "status" : "CANCELED"
+      }, {
+        "uid" : "2f2aeb0b7601a399",
+        "name" : "testGroupDeletion",
+        "title" : "Test group deletion",
+        "time" : {
+          "start" : 1497810563749,
+          "stop" : 1497810563750,
+          "duration" : 1
+        },
+        "severity" : "NORMAL",
+        "status" : "CANCELED"
+      }, {
+        "uid" : "51ee89d13bb644e8",
+        "name" : "testGroupCreation[GroupData{groupName='groupName 0'}]",
+        "title" : "Test group creation [GroupData{groupName='groupName 0'}]",
+        "time" : {
+          "start" : 1497810625885,
+          "stop" : 1497810627177,
+          "duration" : 1292
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "adbb4d0d2d7e1e73",
+        "name" : "testGroupModification",
+        "title" : "Test group modification",
+        "time" : {
+          "start" : 1497810627227,
+          "stop" : 1497810628317,
+          "duration" : 1090
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "82a44dcfed66abea",
+        "name" : "testGroupDeletion",
+        "title" : "Test group deletion",
+        "time" : {
+          "start" : 1497810628324,
+          "stop" : 1497810628746,
+          "duration" : 422
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "f1c7f2fabcc11213",
+        "name" : "testGroupCreation",
+        "title" : "Test group creation",
+        "time" : {
+          "start" : 1497810477647,
+          "stop" : 1497810477651,
+          "duration" : 4
+        },
+        "severity" : "NORMAL",
+        "status" : "CANCELED"
+      }, {
+        "uid" : "6b6017903cb8c109",
+        "name" : "testContactCreation[ContactData{id=2147483647, firstName='firstName 0'}]",
+        "title" : "Test contact creation [ContactData{id=2147483647, firstName='firstName 0'}]",
+        "time" : {
+          "start" : 1497985550496,
+          "stop" : 1497985553613,
+          "duration" : 3117
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "8b12e4320ed4eb33",
+        "name" : "testContactModification",
+        "title" : "Test contact modification",
+        "time" : {
+          "start" : 1497985553661,
+          "stop" : 1497985556120,
+          "duration" : 2459
+        },
+        "severity" : "NORMAL",
+        "status" : "BROKEN"
+      }, {
+        "uid" : "33dd3038a903a7e9",
+        "name" : "testContactDeletion",
+        "title" : "Test contact deletion",
+        "time" : {
+          "start" : 1497985556135,
+          "stop" : 1497985556276,
+          "duration" : 141
+        },
+        "severity" : "NORMAL",
+        "status" : "BROKEN"
+      }, {
+        "uid" : "84c1a70932c730c",
+        "name" : "testContactCreation[ContactData{id=2147483647, firstName='firstName 0'}]",
+        "title" : "Test contact creation [ContactData{id=2147483647, firstName='firstName 0'}]",
+        "time" : {
+          "start" : 1497984965300,
+          "stop" : 1497984968590,
+          "duration" : 3290
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "bc2ea9ae3ddbdd8f",
+        "name" : "testContactModification",
+        "title" : "Test contact modification",
+        "time" : {
+          "start" : 1497984968644,
+          "stop" : 1497984971294,
+          "duration" : 2650
+        },
+        "severity" : "NORMAL",
+        "status" : "BROKEN"
+      }, {
+        "uid" : "6ab15d8d7f541eb4",
+        "name" : "testContactDeletion",
+        "title" : "Test contact deletion",
+        "time" : {
+          "start" : 1497984971305,
+          "stop" : 1497984971441,
+          "duration" : 136
+        },
+        "severity" : "NORMAL",
+        "status" : "BROKEN"
+      }, {
+        "uid" : "67a5ffe4ef68b4b6",
+        "name" : "testContactCreation[ContactData{id=2147483647, firstName='firstName 0'}]",
+        "title" : "Test contact creation [ContactData{id=2147483647, firstName='firstName 0'}]",
+        "time" : {
+          "start" : 1497985885896,
+          "stop" : 1497985889154,
+          "duration" : 3258
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "537d582bb984619a",
+        "name" : "testContactModification",
+        "title" : "Test contact modification",
+        "time" : {
+          "start" : 1497985889215,
+          "stop" : 1497985891655,
+          "duration" : 2440
+        },
+        "severity" : "NORMAL",
+        "status" : "BROKEN"
+      }, {
+        "uid" : "ccb72d19267783fe",
+        "name" : "testContactDeletion",
+        "title" : "Test contact deletion",
+        "time" : {
+          "start" : 1497985891666,
+          "stop" : 1497985891806,
+          "duration" : 140
+        },
+        "severity" : "NORMAL",
+        "status" : "BROKEN"
+      }, {
+        "uid" : "24dc1b664885173c",
+        "name" : "testGroupCreation",
+        "title" : "Test group creation",
+        "time" : {
+          "start" : 1497808864162,
+          "stop" : 1497808864167,
+          "duration" : 5
+        },
+        "severity" : "NORMAL",
+        "status" : "CANCELED"
+      }, {
+        "uid" : "e3d5f557eb5e78e2",
+        "name" : "testContactCreation[ContactData{id=2147483647, firstName='firstName 0'}]",
+        "title" : "Test contact creation [ContactData{id=2147483647, firstName='firstName 0'}]",
+        "time" : {
+          "start" : 1497985301291,
+          "stop" : 1497985304438,
+          "duration" : 3147
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "a5357667a61093dc",
+        "name" : "testContactModification",
+        "title" : "Test contact modification",
+        "time" : {
+          "start" : 1497985304484,
+          "stop" : 1497985306967,
+          "duration" : 2483
+        },
+        "severity" : "NORMAL",
+        "status" : "BROKEN"
+      }, {
+        "uid" : "c3797c2749e393d4",
+        "name" : "testContactDeletion",
+        "title" : "Test contact deletion",
+        "time" : {
+          "start" : 1497985306977,
+          "stop" : 1497985307116,
+          "duration" : 139
+        },
+        "severity" : "NORMAL",
+        "status" : "BROKEN"
+      }, {
+        "uid" : "490975adb055f233",
+        "name" : "testContactCreation[ContactData{id=2147483647, firstName='firstName 0'}]",
+        "title" : "Test contact creation [ContactData{id=2147483647, firstName='firstName 0'}]",
+        "time" : {
+          "start" : 1497982867742,
+          "stop" : 1497982871110,
+          "duration" : 3368
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "4ecebaa4b43ee768",
+        "name" : "testContactModification",
+        "title" : "Test contact modification",
+        "time" : {
+          "start" : 1497982871159,
+          "stop" : 1497982873673,
+          "duration" : 2514
+        },
+        "severity" : "NORMAL",
+        "status" : "BROKEN"
+      }, {
+        "uid" : "bebe33e398e9e800",
+        "name" : "testContactDeletion",
+        "title" : "Test contact deletion",
+        "time" : {
+          "start" : 1497982873693,
+          "stop" : 1497982873723,
+          "duration" : 30
+        },
+        "severity" : "NORMAL",
+        "status" : "BROKEN"
+      }, {
+        "uid" : "8342ec7950249124",
+        "name" : "testGroupCreation[GroupData{groupName='groupName 0'}]",
+        "title" : "Test group creation [GroupData{groupName='groupName 0'}]",
+        "time" : {
+          "start" : 1497986956855,
+          "stop" : 1497986958306,
+          "duration" : 1451
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "729657e7912b0e92",
+        "name" : "testGroupModification",
+        "title" : "Test group modification",
+        "time" : {
+          "start" : 1497986958350,
+          "stop" : 1497986959585,
+          "duration" : 1235
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      }, {
+        "uid" : "fa3385ee153d36c0",
+        "name" : "testGroupDeletion",
+        "title" : "Test group deletion",
+        "time" : {
+          "start" : 1497986959592,
+          "stop" : 1497986960160,
+          "duration" : 568
+        },
+        "severity" : "NORMAL",
+        "status" : "PASSED"
+      } ]
+    } ]
+  } ]
+}
