@@ -1,5 +1,6 @@
 package ru.anatoli.addressbook.appmanager;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -108,11 +109,17 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
+
     public void createGroup(GroupData groupData) {
         initiateGroupCreation();
         inputGroupData(groupData);
         submitGroupCreation();
         groupCache = null;
         returnToGroupPage();
+    }
+
+    public boolean login() {
+        String admin = wd.findElement(By.xpath("//*[@id='top']/form/b")).getText();
+        return admin.equals("(admin)");
     }
 }

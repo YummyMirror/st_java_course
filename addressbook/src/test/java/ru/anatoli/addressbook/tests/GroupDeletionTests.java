@@ -1,5 +1,6 @@
 package ru.anatoli.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.anatoli.addressbook.models.GroupData;
@@ -57,5 +58,12 @@ public class GroupDeletionTests extends TestBase {
         //assertEquals(before, after);
         assertThat(after, equalTo(before.without(deleteGroup))); //remove after course
         compareBDvsUIdataGroups();
+    }
+
+    @Test
+    public void login() {
+        applicationManager.getNavigationHelper().goToGroupPage();
+        boolean login = applicationManager.getGroupHelper().login();
+        Assert.assertTrue(login);
     }
 }
